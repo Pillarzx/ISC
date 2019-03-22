@@ -1,5 +1,6 @@
 package com.team.isc.view.acitvity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.team.isc.R;
 import com.team.isc.view.MyViewPager;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private List<Fragment> fragments = new ArrayList<Fragment>();
     private MyViewPager myViewPager;
-    private LinearLayout llHome, llBlog, llActivity, llBlank;
+    private LinearLayout llHome, llBlog, llActivity, llBlank,headuser;
     private ImageView ivChat, ivFriends, ivContacts, ivSettings, ivCurrent;
     private TextView tvChat, tvFriends, tvContacts, tvSettings, tvCurrent;
     private NavigationView navigationView;
@@ -51,8 +53,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         bindView();
         initView();
         initData();
+
     }
 
+    /**
+     * 绑定控件
+     */
     private void bindView(){
         myViewPager = (MyViewPager) findViewById(R.id.viewPager);
         //侧边栏
@@ -62,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
+
+        headuser = (LinearLayout) findViewById(R.id.headuser);
         llHome = (LinearLayout) findViewById(R.id.llHome);
         llBlog = (LinearLayout) findViewById(R.id.llBlog);
         llActivity = (LinearLayout) findViewById(R.id.llActivity);
@@ -77,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvContacts = (TextView) findViewById(R.id.tvContacts);
         tvSettings = (TextView) findViewById(R.id.tvSettings);
     }
+
+    /**
+     * 初始化控件
+     */
     private void initView() {
         llHome.setOnClickListener(this);
         llBlog.setOnClickListener(this);
@@ -108,6 +120,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         myViewPager.setOffscreenPageLimit(2); //设置向左和向右都缓存limit个页面
     }
 
+    /**
+     * 初始化界面
+     */
     private void initData() {
         Fragment homeFragment = new HomeFragment();
         Fragment blogFragment = new BlogFragment();
@@ -158,6 +173,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+    /**
+     * 左上角抽屉控件
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -168,13 +186,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_nd, menu);
-        return true;
-    }
+//    /**
+//     * 不用自带的actionbar，待删除
+//     * @param menu
+//     * @return
+//     */
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.main_nd, menu);
+//        return true;
+//    }
 
+    /**
+     * toolbar点击
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -190,31 +218,55 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * 侧滑栏内事件
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        item.setCheckable(true);
+        item.setChecked(true);
+        drawer.closeDrawers();
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        switch (id){
+            case R.id.headuser:   //有问题，待解决
+                Toast.makeText(MainActivity.this,"已单击头像",Toast.LENGTH_SHORT).show();
+                headuser.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                break;
+            case R.id.myact:
+            Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+            break;
+            case R.id.mycomment:
+            Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+            break;
+            case R.id.myfavorite:
+            Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+            break;
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            case R.id.nav_manage: break;
+            case R.id.nav_share: break;
+            case R.id.nav_send: break;
+            default:break;
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    /**
+     * 底部控件点击事件
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         changeTab(v.getId());
@@ -260,4 +312,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
     }
+
 }
