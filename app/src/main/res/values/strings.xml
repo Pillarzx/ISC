@@ -22,6 +22,7 @@
     <string name="about">关于</string>
 
     <string name="realname">真实姓名</string>
+    <string name="nickname">昵称</string>
     <string name="sex">性别</string>
     <string name="dep">所属学院</string>
     <string name="clas">班级</string>
@@ -29,6 +30,11 @@
     <string name="phone">手机号</string>
     <string name="qq">QQ号</string>
 
+    <string name="host">主办方:</string>
+    <string name="datetime">时间:</string>
+    <string name="place">地点:</string>
+    <string name="logout">退出登录</string>
+    <string name="submit">提交</string>
 
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>

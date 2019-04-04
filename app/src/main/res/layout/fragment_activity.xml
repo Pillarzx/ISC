@@ -4,10 +4,19 @@
     android:layout_height="match_parent"
     tools:context="com.team.isc.view.fragment.ActivityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_activity_fragment" />
+        android:layout_height="wrap_content">
+
+
+        <ListView
+            android:id="@+id/activity_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="5dp"
+            android:divider="@drawable/img_divider">
+
+        </ListView>
+    </ScrollView>
 
 </FrameLayout>

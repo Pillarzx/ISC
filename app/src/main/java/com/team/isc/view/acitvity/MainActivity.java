@@ -1,6 +1,8 @@
 package com.team.isc.view.acitvity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.team.isc.R;
+import com.team.isc.common.MainApplication;
 import com.team.isc.view.MyViewPager;
 import com.team.isc.view.adapter.MainFragmentStatePagerAdapter;
 import com.team.isc.view.fragment.ActivityFragment;
@@ -36,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private List<Fragment> fragments = new ArrayList<Fragment>();
     private MyViewPager myViewPager;
-    private LinearLayout llHome, llBlog, llActivity, llBlank,headuser;
-    private ImageView ivChat, ivFriends, ivContacts, ivSettings, ivCurrent;
+    private LinearLayout llHome, llBlog, llActivity, llBlank;
+    private ImageView ivChat, ivFriends, ivContacts, ivSettings, ivCurrent,drawerheadimg;
     private TextView tvChat, tvFriends, tvContacts, tvSettings, tvCurrent;
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fab = (FloatingActionButton) findViewById(R.id.fab);
 
 
-        headuser = (LinearLayout) findViewById(R.id.headuser);
+        drawerheadimg = (ImageView)findViewById(R.id.drawer_headimg);
         llHome = (LinearLayout) findViewById(R.id.llHome);
         llBlog = (LinearLayout) findViewById(R.id.llBlog);
         llActivity = (LinearLayout) findViewById(R.id.llActivity);
@@ -233,25 +236,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id){
-            case R.id.headuser:   //有问题，待解决
-                Toast.makeText(MainActivity.this,"已单击头像",Toast.LENGTH_SHORT).show();
-                headuser.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-                        startActivity(intent);
-                    }
-                });
+            case R.id.drawer_headimg:   //有问题，待解决
+//                Toast.makeText(MainActivity.this,"已单击头像",Toast.LENGTH_SHORT).show();
+//                drawerheadimg.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
+//                        startActivity(intent);
+//                    }
+//                });
                 break;
             case R.id.myact:
-            Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
-            break;
+                Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+                break;
             case R.id.mycomment:
-            Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
-            break;
+                Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+                break;
             case R.id.myfavorite:
-            Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
-            break;
+                Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+                break;
 
             case R.id.nav_manage: break;
             case R.id.nav_share: break;
@@ -310,6 +313,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             default:
                 break;
+        }
+    }
+
+    public void drawerHeadimg(View view){
+        SharedPreferences usersp=getSharedPreferences("useraccount", Context.MODE_PRIVATE);
+        if(usersp.getString("username","")!=""){
+            Intent intent=new Intent(MainActivity.this,UserActivity.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
     }
 

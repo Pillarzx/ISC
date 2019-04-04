@@ -39,200 +39,268 @@
                 android:layout_height="wrap_content"
                 android:text="666"
                 android:textSize="24dp"/>
+
             <TextView
                 android:id="@+id/activity_user_sign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="123123"
-                android:textSize="16dp"
+                android:layout_marginTop="8dp"
                 android:lines="2"
-                android:layout_marginTop="8dp"/>
+                android:text="123123"
+                android:textSize="16dp" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="24dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
         android:paddingLeft="24dp"
-        android:orientation="vertical">
+        android:paddingRight="24dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="36dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/realname"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="24dp" />
+
             <TextView
                 android:id="@+id/activity_user_realname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/a"
                 android:text="zx"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
+
             <Button
                 android:id="@+id/a"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:background="@drawable/arrow"/>
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
         </RelativeLayout>
-        <View style="@style/bg_line"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="@string/nickname"
+                android:textSize="24dp" />
+
+            <TextView
+                android:id="@+id/activity_user_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@id/i"
+                android:text="zx"
+                android:textSize="24dp" />
+
+            <Button
+                android:id="@+id/i"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
+        </RelativeLayout>
+
+        <View style="@style/bg_line" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="36dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/sex"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="24dp" />
+
             <TextView
                 android:id="@+id/activity_user_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/b"
                 android:text="zx"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
+
             <Button
                 android:id="@+id/b"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:background="@drawable/arrow"/>
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
         </RelativeLayout>
-        <View style="@style/bg_line"/>
+
+        <View style="@style/bg_line" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="36dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/dep"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="24dp" />
+
             <TextView
                 android:id="@+id/activity_user_dept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/c"
                 android:text="zx"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
+
             <Button
                 android:id="@+id/c"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:background="@drawable/arrow"/>
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
         </RelativeLayout>
-        <View style="@style/bg_line"/>
+
+        <View style="@style/bg_line" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="36dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/clas"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="24dp" />
+
             <TextView
                 android:id="@+id/activity_user_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/d"
                 android:text="zx"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
+
             <Button
                 android:id="@+id/d"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:background="@drawable/arrow"/>
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
         </RelativeLayout>
-        <View style="@style/bg_line"/>
+
+        <View style="@style/bg_line" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="36dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/num"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="24dp" />
+
             <TextView
                 android:id="@+id/activity_user_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/e"
                 android:text="zx"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
+
             <Button
                 android:id="@+id/e"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:background="@drawable/arrow"/>
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
         </RelativeLayout>
-        <View style="@style/bg_line"/>
+
+        <View style="@style/bg_line" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="36dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/phone"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="24dp" />
+
             <TextView
                 android:id="@+id/activity_user_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/f"
                 android:text="zx"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
+
             <Button
                 android:id="@+id/f"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:background="@drawable/arrow"/>
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
         </RelativeLayout>
-        <View style="@style/bg_line"/>
+
+        <View style="@style/bg_line" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="36dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/qq"
-                android:textSize="24dp"
-                android:layout_gravity="center_vertical"/>
+                android:textSize="24dp" />
+
             <TextView
                 android:id="@+id/activity_user_qq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/g"
                 android:text="zx"
-                android:textSize="24dp"/>
+                android:textSize="24dp" />
+
             <Button
                 android:id="@+id/g"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_alignParentRight="true"
-                android:gravity="center_vertical"
-                android:background="@drawable/arrow"/>
+                android:background="@drawable/arrow"
+                android:gravity="center_vertical" />
         </RelativeLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="@string/logout"/>
 </LinearLayout>

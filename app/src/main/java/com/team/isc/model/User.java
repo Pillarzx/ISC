@@ -12,14 +12,16 @@ public class User {
     private String upwd;
     private int urole;
     private String urealname;
+    private String nickname;
+
     private String usex;
+
     private String udept;
     private String uclass;
     private String unum;
     private String uphone;
     private String uqq;
     private int urp;
-
     public int getUno() {
         return uno;
     }
@@ -74,6 +76,14 @@ public class User {
 
     public void setUrealname(String urealname) {
         this.urealname = urealname;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public String getUsex() {
