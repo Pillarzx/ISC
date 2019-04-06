@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,6 +26,7 @@ import android.widget.Toast;
 
 import com.team.isc.R;
 import com.team.isc.common.MainApplication;
+import com.team.isc.util.SPUtil;
 import com.team.isc.view.MyViewPager;
 import com.team.isc.view.adapter.MainFragmentStatePagerAdapter;
 import com.team.isc.view.fragment.ActivityFragment;
@@ -35,13 +37,30 @@ import com.team.isc.view.fragment.HomeFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+//┏┓　　　┏┓
+//┏┛┻━━━┛┻┓
+//┃　　　　　　　┃
+//┃　　　━　　　┃
+//┃　┳┛　┗┳　┃
+//┃　　　　　　　┃
+//┃　　　┻　　　┃
+//┃　　　　　　　┃
+//┗━┓　　　┏━┛
+//    ┃　　　┃  神兽保佑　　　　　　　　
+//    ┃　　　┃  代码无BUG！
+//    ┃　　　┗━━━┓
+//    ┃　　　　　　　┣┓
+//    ┃　　　　　　　┏┛
+//    ┗┓┓┏━┳┓┏┛
+//     ┃┫┫　┃┫┫
+//
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener {
 
     private List<Fragment> fragments = new ArrayList<Fragment>();
     private MyViewPager myViewPager;
     private LinearLayout llHome, llBlog, llActivity, llBlank;
     private ImageView ivChat, ivFriends, ivContacts, ivSettings, ivCurrent,drawerheadimg;
-    private TextView tvChat, tvFriends, tvContacts, tvSettings, tvCurrent;
+    private TextView tvChat, tvFriends, tvContacts, tvSettings, tvCurrent,drawername,drawersign;
     private NavigationView navigationView;
     private DrawerLayout drawer;
     private Toolbar toolbar;
@@ -73,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         drawerheadimg = (ImageView)findViewById(R.id.drawer_headimg);
+        drawername=findViewById(R.id.drawer_name);
+        drawersign=findViewById(R.id.drawer_sign);
         llHome = (LinearLayout) findViewById(R.id.llHome);
         llBlog = (LinearLayout) findViewById(R.id.llBlog);
         llActivity = (LinearLayout) findViewById(R.id.llActivity);
@@ -88,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         tvContacts = (TextView) findViewById(R.id.tvContacts);
         tvSettings = (TextView) findViewById(R.id.tvSettings);
     }
+
 
     /**
      * 初始化控件
@@ -127,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      * 初始化界面
      */
     private void initData() {
+        SPUtil.init(MainActivity.this);
         Fragment homeFragment = new HomeFragment();
         Fragment blogFragment = new BlogFragment();
         Fragment activityFragment = new ActivityFragment();
@@ -317,14 +340,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void drawerHeadimg(View view){
-        SharedPreferences usersp=getSharedPreferences("useraccount", Context.MODE_PRIVATE);
-        if(usersp.getString("username","")!=""){
+        Log.d("ISC","SPUtil.contains(username)=="+SPUtil.contains("username"));
+        Log.d("ISC","SPUtil.getString(username)=="+SPUtil.getString("username"));
+        if(SPUtil.getString("username")!=""){
             Intent intent=new Intent(MainActivity.this,UserActivity.class);
             startActivity(intent);
         }else {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
+
+
     }
 
 }

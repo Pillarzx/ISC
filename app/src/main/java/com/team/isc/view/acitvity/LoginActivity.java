@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.team.isc.R;
 import com.team.isc.common.MainApplication;
 import com.team.isc.presenter.Login;
+import com.team.isc.util.SPUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,10 +35,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init(){
-        SharedPreferences sharedPreferences=getSharedPreferences("useraccount", Context.MODE_PRIVATE);
-        if(sharedPreferences.getString("username","")!=null){
-            etusername.setText(sharedPreferences.getString("username",""));
-            etpassword.setText(sharedPreferences.getString("password",""));
+        if(SPUtil.getString("username","")!=null){
+            etusername.setText(SPUtil.getString("username",""));
+            etpassword.setText(SPUtil.getString("password",""));
         }
     }
     public void backlogin(View view){
@@ -61,13 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             Login login=new Login();
             login.getInput(username,password);
             login.postLoginParameter();
-            if(login.getisLoginSuccess()){
-                MainApplication.getInstance().mInfoMap.put("username",username);
-                SharedPreferences sharedPreferences=getSharedPreferences("useraccount", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString("username",username);
-                editor.putString("password",password);
-                editor.commit();
+            if(SPUtil.getString("username")!=""){
                 Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                 finish();
             }else {

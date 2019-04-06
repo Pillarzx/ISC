@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.team.isc.R;
 import com.team.isc.model.User;
 import com.team.isc.presenter.UserInfo;
+import com.team.isc.util.SPUtil;
 import com.team.isc.view.userinfo.SetRealnameActivity;
 
 public class UserActivity extends AppCompatActivity implements View.OnClickListener{
@@ -58,9 +59,21 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init(){
-        User user=new User();
         UserInfo userInfo=new UserInfo();
-        user=userInfo.getUserInfo();
+        User user=userInfo.getUserInfo();
+
+        username.setText(SPUtil.getString("username"));
+        sign.setText(SPUtil.getString("sign"));
+        realname.setText(SPUtil.getString("realname"));
+        nickname.setText(SPUtil.getString("nickname"));
+        sex.setText(SPUtil.getString("sex"));
+        dept.setText(SPUtil.getString("dept"));
+        clas.setText(SPUtil.getString("class"));
+        num.setText(SPUtil.getString("num"));
+        phone.setText(SPUtil.getString("phone"));
+        qq.setText(SPUtil.getString("qq"));
+
+
     }
 
     @Override
@@ -74,15 +87,14 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.activity_user_back:
                 finish();
+                break;
             case R.id.logout:
-                SharedPreferences userinfo=getSharedPreferences("useraccount", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor=userinfo.edit();
-                editor.putString("username","");
-                editor.putString("passowrd","");
-                editor.commit();
+                SPUtil.clear();
                 finish();
+                break;
             case R.id.activity_user_realname:
                 startActivity(new Intent(UserActivity.this, SetRealnameActivity.class));
+                break;
 
         }
     }

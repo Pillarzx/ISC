@@ -2,6 +2,8 @@ package com.team.isc.presenter;
 
 import android.util.Log;
 
+import com.team.isc.util.SPUtil;
+
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -53,12 +55,10 @@ public class Login {
                     Log.d("isc","获取数据成功了");
                     Log.d("isc","response.code()=="+response.code());
                     Log.d("isc","responseStr=="+responseStr);
-                    if(responseStr.contains("Success")){
-                        Login login=new Login();
-                        login.setState(true);
-                    }else {
-                        Login login=new Login();
-                        login.setState(false);
+                    if(responseStr.contains("true")){
+                        SPUtil.putString("username",username);
+                        SPUtil.putString("password",password);
+
                     }
 
                 }

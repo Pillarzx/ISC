@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.team.isc.R;
 import com.team.isc.presenter.Register;
+import com.team.isc.util.SPUtil;
 
 public class RegisterActivity extends Activity {
 
@@ -49,11 +50,8 @@ public class RegisterActivity extends Activity {
             if (register.getisRegisterSuccess()){
                 Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
 
-                SharedPreferences sharedPreferences=getSharedPreferences("useraccount", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString("username",username);
-                editor.putString("password",password);
-                editor.commit();
+                SPUtil.putString("username",username);
+                SPUtil.putString("password",password);
                 finish();
             }
             else{

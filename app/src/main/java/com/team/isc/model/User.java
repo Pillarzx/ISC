@@ -9,7 +9,7 @@ public class User {
     private int iid;
     private String usign;
     private String uname;
-    private String upwd;
+//    private String upwd;
     private int urole;
     private String urealname;
     private String nickname;
@@ -54,13 +54,13 @@ public class User {
         this.uname = uname;
     }
 
-    public String getUpwd() {
-        return upwd;
-    }
-
-    public void setUpwd(String upwd) {
-        this.upwd = upwd;
-    }
+//    public String getUpwd() {
+//        return upwd;
+//    }
+//
+//    public void setUpwd(String upwd) {
+//        this.upwd = upwd;
+//    }
 
     public int getUrole() {
         return urole;
@@ -140,5 +140,25 @@ public class User {
 
     public void setUrp(int urp) {
         this.urp = urp;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uno=" + uno +
+                ", iid=" + iid +
+                ", usign='" + usign + '\'' +
+                ", uname='" + uname + '\'' +
+                ", urole=" + urole +
+                ", urealname='" + urealname + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", usex='" + usex + '\'' +
+                ", udept='" + udept + '\'' +
+                ", uclass='" + uclass + '\'' +
+                ", unum='" + unum + '\'' +
+                ", uphone='" + uphone + '\'' +
+                ", uqq='" + uqq + '\'' +
+                ", urp=" + urp +
+                '}';
     }
 }

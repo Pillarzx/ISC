@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.team.isc.R;
 import com.team.isc.common.MainApplication;
 import com.team.isc.presenter.UserInfo;
+import com.team.isc.util.SPUtil;
 
 public class SetRealnameActivity extends AppCompatActivity {
 
@@ -25,8 +26,8 @@ public class SetRealnameActivity extends AppCompatActivity {
     public void setRealname(View view){
         String realname=etrealname.getText().toString();
         UserInfo userInfo=new UserInfo();
-        userInfo.setRealname(MainApplication.getInstance().mInfoMap.get("username"),realname);
-        if(UserInfo.isRealnameDone){
+        userInfo.setRealname(SPUtil.getString("username"),realname);
+        if(realname.equals(SPUtil.getString("realname"))){
             Toast.makeText(SetRealnameActivity.this,"已保存",Toast.LENGTH_SHORT).show();
             finish();
         }else {
