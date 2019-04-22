@@ -10,7 +10,8 @@
     <ImageView
         android:id="@+id/activity_img"
         android:layout_width="90dp"
-        android:layout_height="90dp" />
+        android:layout_height="90dp"
+        android:src="@drawable/activity1"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="90dp"
@@ -42,11 +43,12 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/datetime"
-                android:textSize="12dp"/>
+                android:textSize="12dp" />
             <TextView
                 android:id="@+id/activity_datetime"
                 android:layout_marginLeft="4dp"

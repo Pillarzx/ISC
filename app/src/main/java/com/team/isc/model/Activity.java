@@ -1,21 +1,22 @@
 package com.team.isc.model;
 
-import java.sql.Time;
-import java.sql.Date;
+
+import java.io.Serializable;
 
 /**
+ * 活动实体类（非android Activity类）
  * Created by ZX on 2019/3/24.
  */
 
-public class Activity {
+public class Activity implements Serializable{
     private int ano;
     private int uno;
     private int astate;
     private String atitle;
+    private String atype;
     private String ahost;
     private int amaxnumber;
-    private Date adate;
-    private Time atime;
+    private String adatetime;
     private String aplace;
     private int acost;
     private String atext;
@@ -45,6 +46,14 @@ public class Activity {
         this.astate = astate;
     }
 
+    public String getAtype() {
+        return atype;
+    }
+
+    public void setAtype(String atype) {
+        this.atype = atype;
+    }
+
     public String getAtitle() {
         return atitle;
     }
@@ -69,20 +78,12 @@ public class Activity {
         this.amaxnumber = amaxnumber;
     }
 
-    public Date getAdate() {
-        return adate;
+    public String getAdatetime() {
+        return adatetime;
     }
 
-    public void setAdate(Date adate) {
-        this.adate = adate;
-    }
-
-    public Time getAtime() {
-        return atime;
-    }
-
-    public void setAtime(Time atime) {
-        this.atime = atime;
+    public void setAdatetime(String adatetime) {
+        this.adatetime = adatetime;
     }
 
     public String getAplace() {
@@ -115,5 +116,23 @@ public class Activity {
 
     public void setArp(int arp) {
         this.arp = arp;
+    }
+
+    @Override
+    public String toString() {
+        return "Activity{" +
+                "ano=" + ano +
+                ", uno=" + uno +
+                ", astate=" + astate +
+                ", atitle='" + atitle + '\'' +
+                ", atype='" + atype + '\'' +
+                ", ahost='" + ahost + '\'' +
+                ", amaxnumber=" + amaxnumber +
+                ", adatetime='" + adatetime + '\''+
+                ", aplace='" + aplace + '\'' +
+                ", acost=" + acost +
+                ", atext='" + atext + '\'' +
+                ", arp=" + arp +
+                '}';
     }
 }

@@ -29,7 +29,8 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".view.acitvity.RegisterActivity" />
         <activity android:name=".view.acitvity.UserActivity" />
-        <activity android:name=".view.userinfo.SetRealnameActivity"></activity>
+        <activity android:name=".view.userinfo.SetRealnameActivity" />
+        <activity android:name=".view.acitvity.ActinfoActivity"></activity>
     </application>
 
 </manifest>

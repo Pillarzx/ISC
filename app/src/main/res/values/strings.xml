@@ -30,11 +30,17 @@
     <string name="phone">手机号</string>
     <string name="qq">QQ号</string>
 
-    <string name="host">主办方:</string>
-    <string name="datetime">时间:</string>
-    <string name="place">地点:</string>
+    <string name="host">发布者: </string>
+    <string name="datetime">时间: </string>
+    <string name="place">地点: </string>
     <string name="logout">退出登录</string>
     <string name="submit">提交</string>
+
+    <string name="actmaxnumber">人数上限: </string>
+    <string name="currentnumber">当前报名人数: </string>
+    <string name="cost">费用: </string>
+    <string name="join">参加活动</string>
+    <string name="type">类型: </string>
 
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>

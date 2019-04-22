@@ -4,19 +4,16 @@
     android:layout_height="match_parent"
     tools:context="com.team.isc.view.fragment.ActivityFragment">
 
-    <ScrollView
+
+
+    <ListView
+        android:id="@+id/activity_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:dividerHeight="5dp"
+        android:divider="@drawable/img_divider">
 
+    </ListView>
 
-        <ListView
-            android:id="@+id/activity_listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:dividerHeight="5dp"
-            android:divider="@drawable/img_divider">
-
-        </ListView>
-    </ScrollView>
 
 </FrameLayout>

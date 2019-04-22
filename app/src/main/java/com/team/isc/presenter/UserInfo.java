@@ -28,53 +28,7 @@ public class UserInfo {
     public static String userjson;
     public static boolean isRealnameDone=false;
 
-    public User getUserInfo(){
-        User user=new User();
-        OkHttpClient client=new OkHttpClient();
 
-        Log.d("ISC","SPUtil.getString(username)=="+SPUtil.getString("username"));
-
-        FormBody formBody=new FormBody.Builder().add("username", SPUtil.getString("username")).build();
-        Request request=new Request.Builder().url(url_UserInfo).post(formBody).build();
-        Call call=client.newCall(request);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                Log.d("onFailure","执行onFailure方法");
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String responseStr=response.body().string();
-                if(response.isSuccessful()){
-                    Log.d("isc","获取数据成功了");
-                    Log.d("isc","response.code()=="+response.code());
-                    Log.d("isc","responseStr=="+responseStr);
-                    Gson gson=new Gson();
-                    User user=gson.fromJson(responseStr,User.class);
-                    Log.d("isc","user对象："+user.toString());
-                    Log.d("isc","static userjson："+UserInfo.userjson);
-                    SPUtil.putInt("no",user.getUno());
-                    SPUtil.putInt("iid",user.getIid());
-                    SPUtil.putString("username",user.getUname());
-                    SPUtil.putString("nickname",user.getNickname());
-                    SPUtil.putString("sign",user.getUsign());
-                    SPUtil.putInt("role",user.getUrole());
-                    SPUtil.putString("realname",user.getUrealname());
-                    SPUtil.putString("sex",user.getUsex());
-                    SPUtil.putString("dept",user.getUdept());
-                    SPUtil.putString("class",user.getUclass());
-                    SPUtil.putString("num",user.getUnum());
-                    SPUtil.putString("phone",user.getUphone());
-                    SPUtil.putString("qq",user.getUqq());
-                    SPUtil.putInt("rp",user.getUrp());
-                }
-            }
-        });
-
-
-        return user;
-    }
 
     public void setRealname(String username, final String realname){
         OkHttpClient client=new OkHttpClient();

@@ -17,7 +17,7 @@ import okhttp3.Response;
  */
 
 public class Register {
-    private String url="http://47.103.16.59:8080/dbserverdemo/RegLet";
+    private String url="http://47.103.16.59:8080/ISCServer/RegLet";
     public static boolean isRegisterSuccess=false;
     private String username,password;
 
