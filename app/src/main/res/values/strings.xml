@@ -41,7 +41,11 @@
     <string name="cost">费用: </string>
     <string name="join">参加活动</string>
     <string name="type">类型: </string>
-
+    <string name="auth">作者: </string>
+    <string name="end">END </string>
+    <string name="comment">写评论 </string>
+    <string name="editcomment">请输入评论内容 </string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur magna tortor, semper eu feugiat eu, vehicula vitae lacus.</string>
     <!-- Strings related to login -->
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password </string>

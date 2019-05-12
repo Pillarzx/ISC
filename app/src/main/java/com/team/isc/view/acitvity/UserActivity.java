@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.team.isc.R;
+import com.team.isc.common.Flag;
 import com.team.isc.model.User;
 import com.team.isc.presenter.UserInfo;
 import com.team.isc.util.SPUtil;
@@ -33,8 +34,6 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private TextView username,sign,realname,nickname,sex,dept,clas,num,phone,qq;
     private Button back,logout;
     Handler handler;
-    public final int USERINFO_MSG=0x103;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +77,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                if(msg.what==USERINFO_MSG){
+                if(msg.what== Flag.USERINFO_MSG){
                     username.setText(SPUtil.getString("username"));
                     sign.setText(SPUtil.getString("sign"));
                     realname.setText(SPUtil.getString("realname"));
@@ -116,13 +115,10 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr=response.body().string();
                 if(response.isSuccessful()){
-                    Log.d("isc","获取数据成功了");
-                    Log.d("isc","response.code()=="+response.code());
-                    Log.d("isc","responseStr=="+responseStr);
                     Gson gson=new Gson();
                     User user=gson.fromJson(responseStr,User.class);
                     Log.d("isc","user对象："+user.toString());
-                    SPUtil.putInt("no",user.getUno());
+                    SPUtil.putInt("uno",user.getUno());
                     SPUtil.putInt("iid",user.getIid());
                     SPUtil.putString("username",user.getUname());
                     SPUtil.putString("nickname",user.getUnickname());
@@ -137,7 +133,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     SPUtil.putString("qq",user.getUqq());
                     SPUtil.putInt("rp",user.getUrp());
                     Message message=new Message();
-                    message.what=USERINFO_MSG;
+                    message.what=Flag.USERINFO_MSG;
                     handler.sendMessage(message);
                 }
             }
@@ -160,7 +156,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 SPUtil.clear();
                 finish();
                 break;
-            case R.id.activity_user_realname:
+            case R.id.a:
                 startActivity(new Intent(UserActivity.this, SetRealnameActivity.class));
                 break;
 

@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.common.Flag;
 import com.team.isc.model.Activity;
 import com.team.isc.util.SPUtil;
 import com.team.isc.view.acitvity.ActinfoActivity;
@@ -71,7 +72,7 @@ public class ActivityFragment extends Fragment implements AdapterView.OnItemClic
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                if(msg.what==0x101){
+                if(msg.what==Flag.ACTIVITYFRAGMENT_MSG){
                     activities=(ArrayList<Activity>)msg.obj;
                     activityAdapter=new ActivityAdapter();
                     activitylistview.setAdapter(activityAdapter);
@@ -102,15 +103,15 @@ public class ActivityFragment extends Fragment implements AdapterView.OnItemClic
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr = response.body().string();
                 if (response.isSuccessful()) {
-                    Log.d("isc", "获取数据成功了");
-                    Log.d("isc", "response.code()==" + response.code());
-                    Log.d("isc", "responseStr==" + responseStr);
+//                    Log.d("isc", "ActivityServlet获取数据成功了");
+//                    Log.d("isc", "ActivityServletresponse.code()==" + response.code());
+//                    Log.d("isc", "ActivityServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
 
                     activities = gson.fromJson(responseStr, new TypeToken<ArrayList<Activity>>() {
                     }.getType());
                     Message message = new Message();
-                    message.what = 0x101;
+                    message.what = Flag.ACTIVITYFRAGMENT_MSG;
                     message.obj=activities;
                     handler.sendMessage(message);
                     Log.d("isc", "(内部)activityArrayList==" + activities.toString());

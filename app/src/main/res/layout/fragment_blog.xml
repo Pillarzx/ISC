@@ -2,12 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.team.isc.view.fragment.BlogFragment">
+    tools:context="com.team.isc.view.fragment.BlogFragment" >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/blog_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blog_fragment" />
+        android:dividerHeight="5dp"
+        android:divider="@drawable/img_divider">
+
+    </ListView>
 
 </FrameLayout>

@@ -2,12 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.team.isc.view.fragment.HomeFragment">
+    tools:context="com.team.isc.view.fragment.NewsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/news_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_home_fragment" />
+        android:dividerHeight="5dp"
+        android:divider="@drawable/img_divider">
+
+    </ListView>
 
 </FrameLayout>

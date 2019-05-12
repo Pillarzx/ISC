@@ -15,9 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity
-            android:name=".view.acitvity.MainActivity"
-            android:label="@string/app_name">
+        <activity android:name=".view.acitvity.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,12 +23,18 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".view.acitvity.MainActivity"
+            android:label="@string/app_name" />
+        <activity
             android:name=".view.acitvity.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".view.acitvity.RegisterActivity" />
         <activity android:name=".view.acitvity.UserActivity" />
         <activity android:name=".view.userinfo.SetRealnameActivity" />
-        <activity android:name=".view.acitvity.ActinfoActivity"></activity>
+        <activity android:name=".view.acitvity.ActinfoActivity" />
+        <activity android:name=".view.acitvity.NewsinfoActivity" />
+        <activity android:name=".view.acitvity.EditNewscommentActivity" />
+        <activity android:name=".view.acitvity.PostsinfoActivity"></activity>
     </application>
 
 </manifest>

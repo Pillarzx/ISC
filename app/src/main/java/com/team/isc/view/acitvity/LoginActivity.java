@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.team.isc.R;
+import com.team.isc.common.Flag;
 import com.team.isc.util.SPUtil;
 
 import java.io.IOException;
@@ -24,8 +25,6 @@ import okhttp3.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    public final int LOGIN_MSGTRUE=0x1020;
-    public final int LOGIN_MSGFALSE=0x1021;
     private EditText etusername,etpassword;
     Handler handler;
     private String username,password;
@@ -73,11 +72,11 @@ public class LoginActivity extends AppCompatActivity {
                 public void handleMessage(Message msg) {
                     int flag=msg.what;
                     switch (flag){
-                        case LOGIN_MSGTRUE:
+                        case Flag.LOGIN_MSGTRUE:
                             Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
                             finish();
                             break;
-                        case LOGIN_MSGFALSE:
+                        case Flag.LOGIN_MSGFALSE:
                             etusername.setText("");
                             etpassword.setText("");
                             Toast.makeText(LoginActivity.this,"帐号或密码错误!",Toast.LENGTH_SHORT).show();
@@ -106,17 +105,17 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr=response.body().string();
                 if(response.isSuccessful()){
-                    Log.d("isc","获取数据成功了");
-                    Log.d("isc","response.code()=="+response.code());
-                    Log.d("isc","responseStr=="+responseStr);
+//                    Log.d("isc","获取数据成功了");
+//                    Log.d("isc","response.code()=="+response.code());
+//                    Log.d("isc","responseStr=="+responseStr);
                     Message message=new Message();
                     if(responseStr.contains("true")){
                         SPUtil.putString("username",username);
                         SPUtil.putString("password",password);
-                        message.what=LOGIN_MSGTRUE;
+                        message.what=Flag.LOGIN_MSGTRUE;
                         handler.sendMessage(message);
                     }else {
-                        message.what=LOGIN_MSGFALSE;
+                        message.what=Flag.LOGIN_MSGFALSE;
                         handler.sendMessage(message);
                     }
 

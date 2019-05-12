@@ -19,10 +19,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Activity;
-import com.team.isc.model.Posts;
+import com.team.isc.model.News;
 import com.team.isc.view.acitvity.NewsinfoActivity;
-import com.team.isc.view.acitvity.PostsinfoActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,16 +31,17 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class BlogFragment extends Fragment implements AdapterView.OnItemClickListener{
-    protected View bfView;
-    ListView bloglistview;
-    ArrayList<Posts> postsArrayList;
-    Handler handler;
-    BlogAdapter blogAdapter;
-    ImageView postsuserimg,postsimg;
-    TextView postsuser,poststime,poststext,postscommentnum;
 
-    public BlogFragment() {
+public class NewsFragment extends Fragment implements AdapterView.OnItemClickListener{
+
+    protected View nfview;
+    ListView newslistview;
+    ArrayList<News> newsArrayList;
+    Handler handler;
+    NewsAdapter newsAdapter;
+    TextView newstitle,newstext,newsauth,newsdate;
+    ImageView newsimage;
+    public NewsFragment() {
         // Required empty public constructor
     }
 
@@ -58,29 +57,28 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        bfView=inflater.inflate(R.layout.fragment_blog, container, false);
-        bloglistview=bfView.findViewById(R.id.blog_listview);
-        getPostsList();
+        nfview= inflater.inflate(R.layout.fragment_news, container, false);
+        newslistview=nfview.findViewById(R.id.news_listview);
+        getNewsList();
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
-                if(msg.what==Flag.BLOGFRAGMENT_MSG){
-                    postsArrayList=(ArrayList<Posts>) msg.obj;
-                    blogAdapter=new BlogAdapter();
-                    bloglistview.setAdapter(blogAdapter);
-
+                if(msg.what==Flag.NEWSFRAGMENT_MSG){
+                    newsArrayList=(ArrayList<News>) msg.obj;
+                    newsAdapter=new NewsAdapter();
+                    newslistview.setAdapter(newsAdapter);
                 }
-
                 super.handleMessage(msg);
             }
         };
-        bloglistview.setOnItemClickListener(this);
-        return bfView;
-    }
 
-    public void getPostsList(){
+        newslistview.setOnItemClickListener(this);
+        return nfview;
+
+    }
+    public void getNewsList(){
         OkHttpClient client = new OkHttpClient();
-        Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/PostsServlet").build();
+        Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/NewsServlet").build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
             @Override
@@ -92,18 +90,18 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr = response.body().string();
                 if (response.isSuccessful()) {
-//                    Log.d("isc", "PostsServlet获取数据成功了");
-//                    Log.d("isc", "PostsServletresponse.code()==" + response.code());
-//                    Log.d("isc", "PostsServletresponseStr==" + responseStr);
+//                    Log.d("isc", "NewsServlet获取数据成功了");
+//                    Log.d("isc", "NewsServletresponse.code()==" + response.code());
+//                    Log.d("isc", "NewssServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
 
-                    postsArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<Posts>>() {
+                    newsArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<News>>() {
                     }.getType());
                     Message message = new Message();
-                    message.what = Flag.BLOGFRAGMENT_MSG;
-                    message.obj=postsArrayList;
+                    message.what = Flag.NEWSFRAGMENT_MSG;
+                    message.obj=newsArrayList;
                     handler.sendMessage(message);
-                    Log.d("isc", "(内部)postsArrayList==" + postsArrayList.toString());
+                    Log.d("isc", "(内部)postsArrayList==" + newsArrayList.toString());
                 }
             }
         });
@@ -111,19 +109,18 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Intent intent=new Intent(getActivity(),PostsinfoActivity.class);
+        Intent intent=new Intent(getActivity(),NewsinfoActivity.class);
         Bundle bundle=new Bundle();
-        bundle.putSerializable("posts",postsArrayList.get(i));
+        bundle.putSerializable("news",newsArrayList.get(i));
         intent.putExtras(bundle);
         startActivity(intent);
     }
 
-
-    class BlogAdapter extends BaseAdapter{
+    class NewsAdapter extends BaseAdapter {
 
         @Override
         public int getCount() {
-            return postsArrayList.size();
+            return newsArrayList.size();
         }
 
         @Override
@@ -138,22 +135,22 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
 
         @Override
         public View getView(int position, View view, ViewGroup viewGroup) {
-            View viewitem=getLayoutInflater().inflate(R.layout.fragment_bloglist_item,null);
-            postsuser=viewitem.findViewById(R.id.postsuser);
-            poststime=viewitem.findViewById(R.id.poststime);
-            poststext=viewitem.findViewById(R.id.poststext);
-            postscommentnum=viewitem.findViewById(R.id.postscommentnum);
-            postsuserimg=viewitem.findViewById(R.id.postsuserimg);
-            postsimg=viewitem.findViewById(R.id.postsimg);
+            View viewitem=getLayoutInflater().inflate(R.layout.fragment_newslist_item,null);
+            newstitle=viewitem.findViewById(R.id.news_title);
+            newstext=viewitem.findViewById(R.id.news_text);
+            newsdate=viewitem.findViewById(R.id.news_date);
+            newsauth=viewitem.findViewById(R.id.news_auth);
+            newsimage=viewitem.findViewById(R.id.news_image);
 
-            Posts current=postsArrayList.get(position);
-            postsuser.setText(current.getUanme());
-            poststime.setText(current.getPdatetime());
-            poststext.setText(current.getPtext());
-            postscommentnum.setText(current.getPcommentnum());
+            News current=newsArrayList.get(position);
+            newstitle.setText(current.getNtitle());
+            newsdate.setText(current.getNdate());
+            newsauth.setText(current.getUname());
+            newstext.setText(current.getNtext().substring(0,30)+"...");
+
             return viewitem;
         }
     }
 
-
 }
+

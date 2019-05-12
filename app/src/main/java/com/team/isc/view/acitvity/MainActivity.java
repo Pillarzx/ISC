@@ -1,8 +1,6 @@
 package com.team.isc.view.acitvity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,7 +14,6 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.widget.ImageView;
@@ -25,14 +22,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.team.isc.R;
-import com.team.isc.common.MainApplication;
 import com.team.isc.util.SPUtil;
+import com.team.isc.util.UnfoldButton;
 import com.team.isc.view.MyViewPager;
 import com.team.isc.view.adapter.MainFragmentStatePagerAdapter;
 import com.team.isc.view.fragment.ActivityFragment;
 import com.team.isc.view.fragment.BlankFragment;
 import com.team.isc.view.fragment.BlogFragment;
-import com.team.isc.view.fragment.HomeFragment;
+import com.team.isc.view.fragment.NewsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab = (FloatingActionButton) findViewById(R.id.fab);
 
 
         drawerheadimg = (ImageView)findViewById(R.id.drawer_headimg);
@@ -97,17 +94,36 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         llHome = (LinearLayout) findViewById(R.id.llHome);
         llBlog = (LinearLayout) findViewById(R.id.llBlog);
         llActivity = (LinearLayout) findViewById(R.id.llActivity);
-        llBlank = (LinearLayout) findViewById(R.id.llBlank);
+//        llBlank = (LinearLayout) findViewById(R.id.llBlank);
 
         ivChat = (ImageView) findViewById(R.id.ivChat);
         ivFriends = (ImageView) findViewById(R.id.ivFriends);
         ivContacts = (ImageView) findViewById(R.id.ivContacts);
-        ivSettings = (ImageView) findViewById(R.id.ivSettings);
+//        ivSettings = (ImageView) findViewById(R.id.ivSettings);
 
         tvChat = (TextView) findViewById(R.id.tvChat);
         tvFriends = (TextView) findViewById(R.id.tvFriends);
         tvContacts = (TextView) findViewById(R.id.tvContacts);
-        tvSettings = (TextView) findViewById(R.id.tvSettings);
+//        tvSettings = (TextView) findViewById(R.id.tvSettings);
+
+
+
+//右下角动态fab
+        UnfoldButton f = (UnfoldButton) findViewById(R.id.unfoldButton);
+
+        //第一个是菜单图标  第二个是菜单背景颜色  第三个是点击回调
+        f.addElement(R.drawable.ic_menu_share,R.color.colorPrimaryDark, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //这里写菜单的点击事件
+                Toast.makeText(MainActivity.this, "点击了", Toast.LENGTH_SHORT).show();
+            }
+        });
+        f.addElement(R.drawable.ic_menu_gallery,R.color.colorPrimaryDark,null);
+        f.addElement(R.drawable.ic_menu_send,R.color.colorPrimaryDark,null);
+        f.setAngle(90);//这个是展开的总角度  建议取90的倍数
+        f.setmScale(1);//设置弹出缩放的比例  1为不缩放 范围是0—1
+        f.setLength(250);//设置弹出的距离
     }
 
 
@@ -118,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         llHome.setOnClickListener(this);
         llBlog.setOnClickListener(this);
         llActivity.setOnClickListener(this);
-        llBlank.setOnClickListener(this);
+//        llBlank.setOnClickListener(this);
 
         ivChat.setSelected(true);
         tvChat.setSelected(true);
@@ -150,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     private void initData() {
         SPUtil.init(MainActivity.this);
-        Fragment homeFragment = new HomeFragment();
+        Fragment homeFragment = new NewsFragment();
         Fragment blogFragment = new BlogFragment();
         Fragment activityFragment = new ActivityFragment();
         Fragment blankFragment = new BlankFragment();
@@ -191,12 +207,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         myViewPager.setAdapter(adapter);
 
         //右下角浮标点击事件
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-            }
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+//            }
+//        });
     }
 
     /**
@@ -224,25 +240,25 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //        return true;
 //    }
 
-    /**
-     * toolbar点击
-     * @param item
-     * @return
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
+//    /**
+//     * toolbar点击
+//     * @param item
+//     * @return
+//     */
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
 
     /**
      * 侧滑栏内事件
@@ -326,14 +342,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 tvContacts.setSelected(true);
                 tvCurrent = tvContacts;
                 break;
-            case R.id.llBlank:
-                myViewPager.setCurrentItem(3);
-            case 3:
-                ivSettings.setSelected(true);
-                ivCurrent = ivSettings;
-                tvSettings.setSelected(true);
-                tvCurrent = tvSettings;
-                break;
+//            case R.id.llBlank:
+//                myViewPager.setCurrentItem(3);
+//            case 3:
+//                ivSettings.setSelected(true);
+//                ivCurrent = ivSettings;
+//                tvSettings.setSelected(true);
+//                tvCurrent = tvSettings;
+//                break;
             default:
                 break;
         }
