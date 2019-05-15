@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:paddingTop="12dp"
+    tools:context="com.team.isc.view.acitvity.EditPostsActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="3dp"
+            android:background="@drawable/back"
+
+            android:onClick="editpost_back" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/editposts"
+            style="@style/TextAppearance.AppCompat"/>
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/editposts_ptext"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:gravity="top"
+        android:background="@drawable/edit_background"/>
+    <Button
+        android:layout_marginTop="12dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="end"
+        android:background="@drawable/submit"
+        android:onClick="editpostssubmit"/>
+</LinearLayout>

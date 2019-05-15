@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.team.isc.view.acitvity.MainActivity">
 
+
+    <include layout="@layout/content_main_nd"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include layout="@layout/content_main_nd" />
 
         <!--<android.support.design.widget.FloatingActionButton-->
             <!--android:id="@+id/fab"-->
@@ -34,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true" />
+
         <LinearLayout
             android:id="@+id/bottomLinearLayout"
             android:layout_width="match_parent"

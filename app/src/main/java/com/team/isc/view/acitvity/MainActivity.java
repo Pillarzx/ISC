@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawer;
     private Toolbar toolbar;
     private FloatingActionButton fab; //右下角浮标
+    private UnfoldButton f;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,21 +110,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 //右下角动态fab
-        UnfoldButton f = (UnfoldButton) findViewById(R.id.unfoldButton);
+        f = (UnfoldButton) findViewById(R.id.unfoldButton);
 
-        //第一个是菜单图标  第二个是菜单背景颜色  第三个是点击回调
-        f.addElement(R.drawable.ic_menu_share,R.color.colorPrimaryDark, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //这里写菜单的点击事件
-                Toast.makeText(MainActivity.this, "点击了", Toast.LENGTH_SHORT).show();
-            }
-        });
-        f.addElement(R.drawable.ic_menu_gallery,R.color.colorPrimaryDark,null);
-        f.addElement(R.drawable.ic_menu_send,R.color.colorPrimaryDark,null);
-        f.setAngle(90);//这个是展开的总角度  建议取90的倍数
-        f.setmScale(1);//设置弹出缩放的比例  1为不缩放 范围是0—1
-        f.setLength(250);//设置弹出的距离
+
     }
 
 
@@ -159,6 +148,35 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
         myViewPager.setOffscreenPageLimit(2); //设置向左和向右都缓存limit个页面
+
+//右下角UnfoldButton
+
+        //第一个是菜单图标  第二个是菜单背景颜色  第三个是点击回调
+        f.addElement(R.drawable.activity,R.color.colorPrimaryDark, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //这里写菜单的点击事件
+                Toast.makeText(MainActivity.this, "点击了", Toast.LENGTH_SHORT).show();
+            }
+        });
+        f.addElement(R.drawable.posts, R.color.colorPrimaryDark, new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SPUtil.getInt("uno",-1)!=-1) {
+                    Intent intent = new Intent(MainActivity.this, EditPostsActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putString("uno",SPUtil.getInt("uno")+"");
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(MainActivity.this, "请先登录!", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        f.addElement(R.drawable.news,R.color.colorPrimaryDark,null);
+        f.setAngle(90);//这个是展开的总角度  建议取90的倍数
+        f.setmScale(1);//设置弹出缩放的比例  1为不缩放 范围是0—1
+        f.setLength(250);//设置弹出的距离
     }
 
     /**

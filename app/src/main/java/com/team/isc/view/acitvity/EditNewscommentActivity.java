@@ -17,6 +17,8 @@ import com.team.isc.model.Newscomment;
 import com.team.isc.util.SPUtil;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import okhttp3.Call;
@@ -51,17 +53,15 @@ public class EditNewscommentActivity extends AppCompatActivity {
     public void submitComment(View view) {
 
         String comment = editnewscommenttext.getText().toString();
-        Log.d("isc","uno==="+SPUtil.getInt("uno"));
-        Log.d("isc","nno==="+nno);
-        Log.d("isc","nctext==="+comment);
-//        if (comment != "") {
-        if (true) {
+        if (comment != "") {
             OkHttpClient client = new OkHttpClient();
-//            MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
-//            FormBody formBody = new FormBody.Builder().add("uno", SPUtil.getInt("uno")+"").add("nno", nno).add("nctext", comment).build();
-            String params="uno=1&nno=2&nctext=app测试4";
-            RequestBody body = RequestBody.create(MediaType.parse("application/x-www-form-urlencoded;charset=utf-8"), params);
-            Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/AddNewscommentServlet").post(body).build();
+            FormBody formBody = null;
+            try {
+                formBody = new FormBody.Builder().add("uno", SPUtil.getInt("uno")+"").add("nno", nno).add("nctext", URLEncoder.encode(comment,"utf-8")).build();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/AddNewscommentServlet").post(formBody).build();
             Call call = client.newCall(request);
             call.enqueue(new Callback() {
                 @Override

@@ -34,7 +34,8 @@
         <activity android:name=".view.acitvity.ActinfoActivity" />
         <activity android:name=".view.acitvity.NewsinfoActivity" />
         <activity android:name=".view.acitvity.EditNewscommentActivity" />
-        <activity android:name=".view.acitvity.PostsinfoActivity"></activity>
+        <activity android:name=".view.acitvity.PostsinfoActivity" />
+        <activity android:name=".view.acitvity.EditPostsActivity"></activity>
     </application>
 
 </manifest>

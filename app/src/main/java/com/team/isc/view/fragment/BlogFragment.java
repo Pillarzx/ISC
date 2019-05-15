@@ -60,6 +60,12 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
         // Inflate the layout for this fragment
         bfView=inflater.inflate(R.layout.fragment_blog, container, false);
         bloglistview=bfView.findViewById(R.id.blog_listview);
+        initView();
+        bloglistview.setOnItemClickListener(this);
+        return bfView;
+    }
+
+    void initView(){
         getPostsList();
         handler=new Handler(){
             @Override
@@ -74,10 +80,7 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
                 super.handleMessage(msg);
             }
         };
-        bloglistview.setOnItemClickListener(this);
-        return bfView;
     }
-
     public void getPostsList(){
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/PostsServlet").build();
@@ -118,6 +121,11 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
         startActivity(intent);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initView();
+    }
 
     class BlogAdapter extends BaseAdapter{
 
