@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 /**
  * Created by ZX on 2019/5/1.
+ * 有bug，未使用
  */
 
 public class ListViewForScrollView extends ListView {

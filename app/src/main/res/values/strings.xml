@@ -60,4 +60,20 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="editactivity">发布活动</string>
+    <string name="entertainment">娱乐</string>
+    <string name="competition">比赛</string>
+    <string name="reporting">报告汇演/讲座</string>
+    <string name="volunteer">公益活动</string>
+    <string name="other">其它</string>
+    <string name="sports">运动</string>
+    <string name="maxps">若无上限，请填“0”</string>
+    <string name="introduction">介绍:</string>
+    <string name="title">标题:</string>
+    <string name="organizer">主办方</string>
+    <string name="select">选择</string>
+    <string name="begindatetime">活动开始时间</string>
+    <string name="myposts">我的帖子</string>
+    <string name="mynews">我的资讯</string>
+    <string name="share">分享</string>
 </resources>

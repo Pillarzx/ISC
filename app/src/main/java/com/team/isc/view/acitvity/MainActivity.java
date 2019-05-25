@@ -155,8 +155,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         f.addElement(R.drawable.activity,R.color.colorPrimaryDark, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //这里写菜单的点击事件
-                Toast.makeText(MainActivity.this, "点击了", Toast.LENGTH_SHORT).show();
+                if(SPUtil.getInt("uno",-1)!=-1) {
+                    Intent intent = new Intent(MainActivity.this, EditActActivity.class);
+                    startActivity(intent);
+                }else {
+                    Toast.makeText(MainActivity.this, "请先登录!", Toast.LENGTH_LONG).show();
+                }
             }
         });
         f.addElement(R.drawable.posts, R.color.colorPrimaryDark, new View.OnClickListener() {
@@ -164,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 if(SPUtil.getInt("uno",-1)!=-1) {
                     Intent intent = new Intent(MainActivity.this, EditPostsActivity.class);
+                    //没必要这样传值，多余步骤待删除
                     Bundle bundle=new Bundle();
                     bundle.putString("uno",SPUtil.getInt("uno")+"");
                     intent.putExtras(bundle);
@@ -176,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         f.addElement(R.drawable.news,R.color.colorPrimaryDark,null);
         f.setAngle(90);//这个是展开的总角度  建议取90的倍数
         f.setmScale(1);//设置弹出缩放的比例  1为不缩放 范围是0—1
-        f.setLength(250);//设置弹出的距离
+        f.setLength(300);//设置弹出的距离
     }
 
     /**
@@ -184,14 +189,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
      */
     private void initData() {
         SPUtil.init(MainActivity.this);
-        Fragment homeFragment = new NewsFragment();
+        Fragment newsFragment = new NewsFragment();
         Fragment blogFragment = new BlogFragment();
         Fragment activityFragment = new ActivityFragment();
         Fragment blankFragment = new BlankFragment();
-        fragments.add(homeFragment);
+        fragments.add(newsFragment);
         fragments.add(blogFragment);
         fragments.add(activityFragment);
         fragments.add(blankFragment);
+        //Fragment适配器
+        MainFragmentStatePagerAdapter adapter = new MainFragmentStatePagerAdapter(getSupportFragmentManager(), fragments);
+        myViewPager.setAdapter(adapter);
 
         navigationView.setNavigationItemSelectedListener(this);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -218,11 +226,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
         toggle.syncState();
 
-        //Fragment适配器
-        MainFragmentStatePagerAdapter adapter = new MainFragmentStatePagerAdapter(getSupportFragmentManager(), fragments);
-        myViewPager.setAdapter(adapter);
 
         //右下角浮标点击事件
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -246,37 +252,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-//    /**
-//     * 不用自带的actionbar，待删除
-//     * @param menu
-//     * @return
-//     */
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main_nd, menu);
-//        return true;
-//    }
-
-//    /**
-//     * toolbar点击
-//     * @param item
-//     * @return
-//     */
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
 
     /**
      * 侧滑栏内事件
@@ -293,18 +268,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch (id){
-            case R.id.drawer_headimg:   //有问题，待解决
-//                Toast.makeText(MainActivity.this,"已单击头像",Toast.LENGTH_SHORT).show();
-//                drawerheadimg.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Intent intent=new Intent(MainActivity.this,LoginActivity.class);
-//                        startActivity(intent);
-//                    }
-//                });
-                break;
+//            case R.id.drawer_headimg:   //有问题，待解决
+//                break;
+            //已用onClick代替
             case R.id.myact:
-                Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(MainActivity.this,MyActActivity.class);
+                startActivity(intent);
                 break;
             case R.id.mycomment:
                 Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
@@ -383,8 +352,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
-
-
     }
 
 }

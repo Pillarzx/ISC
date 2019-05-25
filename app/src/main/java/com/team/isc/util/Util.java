@@ -14,11 +14,27 @@ public class Util {
      * @return
      */
     public static boolean isNumeric(String str){
-        Pattern pattern = Pattern.compile("[0-9]*");
-        Matcher isNum = pattern.matcher(str);
-        if( !isNum.matches() ){
-            return false;
-        }
-        return true;
+        Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
+        return pattern.matcher(str).matches();
     }
+
+    /**
+     *
+     * @return true没问题;false信息不完全
+     */
+    public static boolean checkUserAccount(){
+        if((SPUtil.getInt("uno")+"").isEmpty()
+                ||SPUtil.getString("username","").isEmpty()
+                ||SPUtil.getString("realname","").isEmpty()
+                ||SPUtil.getString("sex","").isEmpty()
+                ||SPUtil.getString("dept","").isEmpty()
+                ||SPUtil.getString("class","").isEmpty()
+                ||SPUtil.getString("num","").isEmpty()
+                ||SPUtil.getString("phone","").isEmpty()){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 }

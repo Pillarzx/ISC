@@ -19,6 +19,8 @@ android {
 }
 
 dependencies {
+//    compile 'com.contrarywind:Android-PickerView:3.2.7'
+    compile 'com.contrarywind:Android-PickerView:4.1.8'
     compile 'com.github.clans:fab:1.6.4'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.squareup.okhttp3:okhttp:3.7.0'
@@ -33,7 +35,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestCompile('com.android.support:support-annotations:26.1.0') {
+//    androidTestCompile('com.android.support:support-annotations:26.1.0')
+    androidTestCompile('com.android.support:support-annotations:28.0.0') {
         force = true
     }
 }
