@@ -61,7 +61,9 @@
         android:paddingRight="24dp">
 
         <RelativeLayout
+            android:id="@+id/setlayout_realname"
             android:layout_width="match_parent"
+            android:focusableInTouchMode="true"
             android:layout_height="36dp">
 
             <TextView
@@ -69,17 +71,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:text="@string/realname"
-                android:textSize="24dp" />
+                style="@style/TextAppearance.AppCompat"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_realname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/a"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
-            <Button
+            <ImageView
                 android:id="@+id/a"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -88,6 +90,7 @@
                 android:gravity="center_vertical" />
         </RelativeLayout>
         <RelativeLayout
+            android:id="@+id/setlayout_nickname"
             android:layout_width="match_parent"
             android:layout_height="36dp">
 
@@ -95,18 +98,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                style="@style/TextAppearance.AppCompat"
                 android:text="@string/nickname"
-                android:textSize="24dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/i"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
-            <Button
+            <ImageView
                 android:id="@+id/i"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
@@ -118,6 +121,7 @@
         <View style="@style/bg_line" />
 
         <RelativeLayout
+            android:id="@+id/setlayout_sex"
             android:layout_width="match_parent"
             android:layout_height="36dp">
 
@@ -125,16 +129,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                style="@style/TextAppearance.AppCompat"
                 android:text="@string/sex"
-                android:textSize="24dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/b"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/b"
@@ -148,6 +152,7 @@
         <View style="@style/bg_line" />
 
         <RelativeLayout
+            android:id="@+id/setlayout_dept"
             android:layout_width="match_parent"
             android:layout_height="36dp">
 
@@ -155,16 +160,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                style="@style/TextAppearance.AppCompat"
                 android:text="@string/dep"
-                android:textSize="24dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_dept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/c"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/c"
@@ -178,6 +183,7 @@
         <View style="@style/bg_line" />
 
         <RelativeLayout
+            android:id="@+id/setlayout_class"
             android:layout_width="match_parent"
             android:layout_height="36dp">
 
@@ -185,16 +191,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                style="@style/TextAppearance.AppCompat"
                 android:text="@string/clas"
-                android:textSize="24dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/d"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/d"
@@ -208,6 +214,7 @@
         <View style="@style/bg_line" />
 
         <RelativeLayout
+            android:id="@+id/setlayout_num"
             android:layout_width="match_parent"
             android:layout_height="36dp">
 
@@ -215,16 +222,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                style="@style/TextAppearance.AppCompat"
                 android:text="@string/num"
-                android:textSize="24dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/e"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/e"
@@ -238,6 +245,7 @@
         <View style="@style/bg_line" />
 
         <RelativeLayout
+            android:id="@+id/setlayout_phone"
             android:layout_width="match_parent"
             android:layout_height="36dp">
 
@@ -245,16 +253,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                style="@style/TextAppearance.AppCompat"
                 android:text="@string/phone"
-                android:textSize="24dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/f"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/f"
@@ -268,6 +276,7 @@
         <View style="@style/bg_line" />
 
         <RelativeLayout
+            android:id="@+id/setlayout_qq"
             android:layout_width="match_parent"
             android:layout_height="36dp">
 
@@ -275,16 +284,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                style="@style/TextAppearance.AppCompat"
                 android:text="@string/qq"
-                android:textSize="24dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/activity_user_qq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/g"
-                android:text="zx"
-                android:textSize="24dp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/g"

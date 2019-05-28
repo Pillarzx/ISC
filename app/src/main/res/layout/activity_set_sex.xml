@@ -8,20 +8,20 @@
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context="com.team.isc.view.userinfo.SetRealnameActivity">
+    tools:context="com.team.isc.view.userinfo.SetSexActivity">
     <Button
-        android:onClick="back"
+        android:onClick="setsexnameback"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="3dp"
         android:background="@drawable/back" />
     <EditText
-        android:id="@+id/setrealname"
+        android:id="@+id/setsex"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/realname"/>
+        android:hint="@string/sex"/>
     <Button
-        android:onClick="setRealname"
+        android:onClick="setSex"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"

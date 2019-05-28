@@ -76,4 +76,7 @@
     <string name="myposts">我的帖子</string>
     <string name="mynews">我的资讯</string>
     <string name="share">分享</string>
+    <string name="title_activity_act_initinfo">ActInitinfoActivity</string>
+    <string name="roster">活动报名信息</string>
+    <string name="generaluser">普通用户</string>>
 </resources>

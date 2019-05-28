@@ -37,7 +37,16 @@
         <activity android:name=".view.acitvity.PostsinfoActivity" />
         <activity android:name=".view.acitvity.EditPostsActivity" />
         <activity android:name=".view.acitvity.EditActActivity" />
-        <activity android:name=".view.acitvity.MyActActivity"></activity>
+        <activity android:name=".view.acitvity.MyActActivity" />
+        <activity android:name=".view.acitvity.ActInitinfoActivity" />
+        <activity android:name=".view.acitvity.MyPostsActivity" />
+        <activity android:name=".view.userinfo.SetNicknameActivity" />
+        <activity android:name=".view.userinfo.SetSexActivity" />
+        <activity android:name=".view.userinfo.SetDeptActivity" />
+        <activity android:name=".view.userinfo.SetClassActivity" />
+        <activity android:name=".view.userinfo.SetNumActivity" />
+        <activity android:name=".view.userinfo.SetPhoneActivity" />
+        <activity android:name=".view.userinfo.SetQQActivity"/>
     </application>
 
 </manifest>

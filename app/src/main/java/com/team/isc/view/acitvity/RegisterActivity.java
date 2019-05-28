@@ -3,6 +3,8 @@ package com.team.isc.view.acitvity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.team.isc.R;
+import com.team.isc.common.Flag;
 import com.team.isc.util.SPUtil;
 import com.team.isc.util.Util;
 
@@ -55,46 +58,69 @@ public class RegisterActivity extends Activity {
             password_register.setText("");
             Toast.makeText(RegisterActivity.this,"不得含有非法字符“；”、“*”和空格",Toast.LENGTH_SHORT).show();
         }else {
-            /**
-             * 提交注册信息
-             */
-            OkHttpClient client=new OkHttpClient();
-            FormBody formBody=new FormBody.Builder().add("username",username).add("password",password).build();
-            Request request=new Request.Builder().url("http://47.103.16.59:8080/ISCServer/RegLet").post(formBody).build();
-            Call call=client.newCall(request);
-
-            call.enqueue(new Callback() {
+            sendReg(username,password);
+            handler=new Handler(){
                 @Override
-                public void onFailure(Call call, IOException e) {
-                    Log.d("onFailure","执行onFailure方法");
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    String responseStr=response.body().string();
-                    if(response.isSuccessful()){
-                        Log.d("isc","获取数据成功了");
-                        Log.d("isc","response.code()=="+response.code());
-                        Log.d("isc","responseStr=="+responseStr);
-                        if(Util.isNumeric(responseStr)){
-                            Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-
-                            SPUtil.putString("username",username);
-                            SPUtil.putString("password",password);
-                            SPUtil.putString("uno",responseStr);
-                        }else {
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    int flag=msg.what;
+                    switch (flag){
+                        case Flag.REGISTEREXISTED_MSG:
                             Toast.makeText(RegisterActivity.this,"用户名已存在,请重新输入",Toast.LENGTH_LONG).show();
                             username_register.setText("");
                             password_register.setText("");
-                        }
-
+                            break;
+                        case Flag.REGISTERSUCCESS_MSG:
+                            Toast.makeText(RegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
+                            String responseStr=(String)msg.obj;
+                            SPUtil.putString("username",username);
+                            SPUtil.putString("password",password);
+                            SPUtil.putString("uno",responseStr);
+                            finish();
+                            break;
+                        default:
+                                break;
                     }
-
                 }
-            });
-
+            };
 
         }
     }
 
+    void sendReg(String username,String password){
+
+        OkHttpClient client=new OkHttpClient();
+        FormBody formBody=new FormBody.Builder().add("username",username).add("password",password).build();
+        Request request=new Request.Builder().url("http://47.103.16.59:8080/ISCServer/RegLet").post(formBody).build();
+        Call call=client.newCall(request);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d("onFailure","执行onFailure方法");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String responseStr=response.body().string();
+                if(response.isSuccessful()){
+                    Log.d("isc","获取数据成功了");
+                    Log.d("isc","response.code()=="+response.code());
+                    Log.d("isc","responseStr=="+responseStr);
+                    if(Util.isNumeric(responseStr)){
+                        Message message=new Message();
+                        message.what= Flag.REGISTERSUCCESS_MSG;
+                        message.obj=responseStr;
+                        handler.sendMessage(message);
+                    }else {
+                        Message message=new Message();
+                        message.what= Flag.REGISTEREXISTED_MSG;
+                        handler.sendMessage(message);
+                    }
+
+                }
+
+            }
+        });
+    }
 }

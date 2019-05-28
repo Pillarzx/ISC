@@ -10,15 +10,22 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
 import com.team.isc.model.User;
-import com.team.isc.presenter.UserInfo;
 import com.team.isc.util.SPUtil;
+import com.team.isc.view.userinfo.SetClassActivity;
+import com.team.isc.view.userinfo.SetDeptActivity;
+import com.team.isc.view.userinfo.SetNicknameActivity;
+import com.team.isc.view.userinfo.SetNumActivity;
+import com.team.isc.view.userinfo.SetPhoneActivity;
+import com.team.isc.view.userinfo.SetQQActivity;
 import com.team.isc.view.userinfo.SetRealnameActivity;
+import com.team.isc.view.userinfo.SetSexActivity;
 
 import java.io.IOException;
 
@@ -34,7 +41,7 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
     private TextView username,sign,realname,nickname,sex,dept,clas,num,phone,qq;
     private Button back,logout;
     Handler handler;
-
+    RelativeLayout setlayout_realname,setlayout_nickname,setlayout_sex,setlayout_dept,setlayout_class,setlayout_num,setlayout_phone,setlayout_qq;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,16 +65,27 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
         back=findViewById(R.id.activity_user_back);
         logout=findViewById(R.id.logout);
 
+        setlayout_realname=findViewById(R.id.setlayout_realname);
+        setlayout_nickname=findViewById(R.id.setlayout_nickname);
+        setlayout_sex=findViewById(R.id.setlayout_sex);
+        setlayout_dept=findViewById(R.id.setlayout_dept);
+        setlayout_class=findViewById(R.id.setlayout_class);
+        setlayout_num=findViewById(R.id.setlayout_num);
+        setlayout_phone=findViewById(R.id.setlayout_phone);
+        setlayout_qq=findViewById(R.id.setlayout_qq);
+
         username.setOnClickListener(this);
         sign.setOnClickListener(this);
-        realname.setOnClickListener(this);
-        nickname.setOnClickListener(this);
-        sex.setOnClickListener(this);
-        dept.setOnClickListener(this);
-        clas.setOnClickListener(this);
-        num.setOnClickListener(this);
-        phone.setOnClickListener(this);
-        qq.setOnClickListener(this);
+
+        setlayout_realname.setOnClickListener(this);
+        setlayout_nickname.setOnClickListener(this);
+        setlayout_sex.setOnClickListener(this);
+        setlayout_dept.setOnClickListener(this);
+        setlayout_class.setOnClickListener(this);
+        setlayout_num.setOnClickListener(this);
+        setlayout_phone.setOnClickListener(this);
+        setlayout_qq.setOnClickListener(this);
+
         back.setOnClickListener(this);
         logout.setOnClickListener(this);
     }
@@ -82,7 +100,11 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                     sign.setText(SPUtil.getString("sign"));
                     realname.setText(SPUtil.getString("realname"));
                     nickname.setText(SPUtil.getString("nickname"));
-                    sex.setText(SPUtil.getString("sex"));
+                    if("f".equals(SPUtil.getString("sex"))){
+                        sex.setText("女");
+                    }else{
+                        sex.setText("男");
+                    }
                     dept.setText(SPUtil.getString("dept"));
                     clas.setText(SPUtil.getString("class"));
                     num.setText(SPUtil.getString("num"));
@@ -156,8 +178,29 @@ public class UserActivity extends AppCompatActivity implements View.OnClickListe
                 SPUtil.clear();
                 finish();
                 break;
-            case R.id.a:
+            case R.id.setlayout_realname:
                 startActivity(new Intent(UserActivity.this, SetRealnameActivity.class));
+                break;
+            case R.id.setlayout_nickname:
+                startActivity(new Intent(UserActivity.this, SetNicknameActivity.class));
+                break;
+            case R.id.setlayout_sex:
+                startActivity(new Intent(UserActivity.this, SetSexActivity.class));
+                break;
+            case R.id.setlayout_dept:
+                startActivity(new Intent(UserActivity.this, SetDeptActivity.class));
+                break;
+            case R.id.setlayout_class:
+                startActivity(new Intent(UserActivity.this, SetClassActivity.class));
+                break;
+            case R.id.setlayout_num:
+                startActivity(new Intent(UserActivity.this, SetNumActivity.class));
+                break;
+            case R.id.setlayout_phone:
+                startActivity(new Intent(UserActivity.this, SetPhoneActivity.class));
+                break;
+            case R.id.setlayout_qq:
+                startActivity(new Intent(UserActivity.this, SetQQActivity.class));
                 break;
 
         }

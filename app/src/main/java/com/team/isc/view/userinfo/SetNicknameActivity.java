@@ -25,46 +25,47 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class SetRealnameActivity extends AppCompatActivity {
+public class SetNicknameActivity extends AppCompatActivity {
 
-    EditText etrealname;
+    EditText setnickname;
     Handler handler;
-    String realname;
+    String nickname;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_realname);
-        etrealname=findViewById(R.id.setrealname);
+        setContentView(R.layout.activity_set_nickname);
+        setnickname=findViewById(R.id.setnickname);
     }
-    public void back(View v){
+
+    public void setnicknameback(View view) {
         finish();
     }
 
-    public void setRealname(View view){
-        realname=etrealname.getText().toString();
+    public void setNickname(View view) {
+        nickname=setnickname.getText().toString();
+
         try {
-            sendRealname(URLEncoder.encode(realname,"UTF-8"));
+            sendNickname(URLEncoder.encode(nickname,"UTF-8"));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                if(msg.what== Flag.SETREALNAMEACTIVITY_MSG){
-                    SPUtil.putString("realname",realname);
-                    Toast.makeText(SetRealnameActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
+                if(msg.what== Flag.SETNICKNAMEACTIVITY_MSG){
+                    SPUtil.putString("nickname",nickname);
+                    Toast.makeText(SetNicknameActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
         };
     }
 
-    void sendRealname(String realname){
+    void sendNickname(String nickname){
         OkHttpClient client=new OkHttpClient();
-        FormBody formBody=new FormBody.Builder().add("uno",SPUtil.getInt("uno")+"").add("realname",realname).build();
-        Request request=new Request.Builder().url("http://47.103.16.59:8080/ISCServer/SetRealnameServlet").post(formBody).build();
+        FormBody formBody=new FormBody.Builder().add("uno",SPUtil.getInt("uno")+"").add("nickname",nickname).build();
+        Request request=new Request.Builder().url("http://47.103.16.59:8080/ISCServer/SetNicknameServlet").post(formBody).build();
         Call call=client.newCall(request);
 
         call.enqueue(new Callback() {
@@ -77,13 +78,14 @@ public class SetRealnameActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr=response.body().string();
                 if(response.isSuccessful()){
-                    Log.d("isc", "SetRealnameServlet==" + responseStr);
                     if(Util.isNumeric(responseStr)&&Integer.parseInt(responseStr)>(-1)){
                         Message message=new Message();
-                        message.what= Flag.SETREALNAMEACTIVITY_MSG;
+                        message.what= Flag.SETNICKNAMEACTIVITY_MSG;
                         handler.sendMessage(message);
                     }
+
                 }
+
             }
         });
     }

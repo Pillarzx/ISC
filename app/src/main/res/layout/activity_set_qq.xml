@@ -8,20 +8,20 @@
     android:paddingLeft="16dp"
     android:paddingTop="16dp"
     android:orientation="vertical"
-    tools:context="com.team.isc.view.userinfo.SetRealnameActivity">
+    tools:context="com.team.isc.view.userinfo.SetQQActivity">
     <Button
-        android:onClick="back"
+        android:onClick="setqqback"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="3dp"
         android:background="@drawable/back" />
     <EditText
-        android:id="@+id/setrealname"
+        android:id="@+id/setqq"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/realname"/>
+        android:hint="@string/qq"/>
     <Button
-        android:onClick="setRealname"
+        android:onClick="setQQ"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit"

@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     tools:context="com.team.isc.view.fragment.MyactSignedFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/myactsigned_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/action_sign_up" />
+        android:dividerHeight="5dp"
+        android:divider="@drawable/img_divider"/>
 
 </FrameLayout>

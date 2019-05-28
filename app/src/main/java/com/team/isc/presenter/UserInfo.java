@@ -20,15 +20,16 @@ import okhttp3.Response;
 
 /**
  * Created by ZX on 2019/4/3.
+ *
  */
 
+@Deprecated
 public class UserInfo {
     private String url_setRealname="http://47.103.16.59:8080/ISCServer/UserInfo";
     private String url_UserInfo="http://47.103.16.59:8080/ISCServer/UserInfo";
     public static String userjson;
+
     public static boolean isRealnameDone=false;
-
-
 
     public void setRealname(String username, final String realname){
         OkHttpClient client=new OkHttpClient();

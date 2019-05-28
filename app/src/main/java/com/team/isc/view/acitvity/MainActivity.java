@@ -272,14 +272,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                break;
             //已用onClick代替
             case R.id.myact:
-                Intent intent=new Intent(MainActivity.this,MyActActivity.class);
-                startActivity(intent);
+                Intent intent_myact=new Intent(MainActivity.this,MyActActivity.class);
+                startActivity(intent_myact);
                 break;
             case R.id.mycomment:
-                Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+                Intent intent_myposts=new Intent(MainActivity.this,MyPostsActivity.class);
+                startActivity(intent_myposts);
                 break;
             case R.id.myfavorite:
-                Toast.makeText(MainActivity.this,"已单击",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,"您不是资讯发布者，暂时无法查看",Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_manage: break;

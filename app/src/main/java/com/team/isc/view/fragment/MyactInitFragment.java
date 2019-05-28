@@ -1,5 +1,6 @@
 package com.team.isc.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -19,6 +21,7 @@ import com.team.isc.R;
 import com.team.isc.common.Flag;
 import com.team.isc.model.Activity;
 import com.team.isc.util.SPUtil;
+import com.team.isc.view.acitvity.ActInitinfoActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,7 +34,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 
-public class MyactInitFragment extends Fragment {
+public class MyactInitFragment extends Fragment implements AdapterView.OnItemClickListener{
 
     protected View mifView;
     ListView myact_listview;
@@ -57,13 +60,14 @@ public class MyactInitFragment extends Fragment {
         mifView=inflater.inflate(R.layout.fragment_myact_init, container, false);
         bind();
         initView();
+        myact_listview.setOnItemClickListener(this);
         return mifView;
     }
     void bind(){
         myact_listview=mifView.findViewById(R.id.myact_listview);
     }
     void initView(){
-        getMyactList();
+        getMyactinitList();
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -77,7 +81,7 @@ public class MyactInitFragment extends Fragment {
         };
 
     }
-    public void getMyactList() {
+    public void getMyactinitList() {
 
         OkHttpClient client = new OkHttpClient();
         FormBody formBody=new FormBody.Builder().add("uno", SPUtil.getInt("uno")+"").build();
@@ -109,6 +113,15 @@ public class MyactInitFragment extends Fragment {
     public void onResume() {
         super.onResume();
         initView();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent=new Intent(getActivity(),ActInitinfoActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("activity",activities.get(i));
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 
