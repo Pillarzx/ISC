@@ -24,7 +24,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SetClassActivity extends AppCompatActivity {
-
     EditText setclass;
     Handler handler;
     String clas;
@@ -34,11 +33,9 @@ public class SetClassActivity extends AppCompatActivity {
         setContentView(R.layout.activity_set_class);
         setclass=findViewById(R.id.setclass);
     }
-
     public void setclassback(View view) {
         finish();
     }
-
     public void setClass(View view) {
         clas=setclass.getText().toString();
         sendClass(clas);
@@ -78,7 +75,6 @@ public class SetClassActivity extends AppCompatActivity {
                     }
 
                 }
-
             }
         });
     }

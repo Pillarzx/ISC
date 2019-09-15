@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.team.isc.view.acitvity.AboutActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbarlayout_myposts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"  >
+            <Button
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="3dp"
+                android:background="@drawable/back"
+                android:onClick="aboutback" />
+            <TextView
+                android:text="@string/about"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"/>
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp">
+        <ImageView
+            android:src="@drawable/isclogo"
+            android:scaleType="centerInside"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="160dp"
+            android:layout_height="160dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/version"
+            style="@style/TextAppearance.AppCompat"/>
+        <TextView
+            android:paddingTop="12dp"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abouttext"
+            style="@style/TextAppearance.AppCompat"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="@string/qqqun"
+            style="@style/TextAppearance.AppCompat"/>
+    </LinearLayout>
+</LinearLayout>

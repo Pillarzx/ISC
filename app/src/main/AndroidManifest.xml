@@ -8,9 +8,10 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!-- android:icon="@mipmap/ic_launcher" -->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/isclogo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -30,7 +31,6 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".view.acitvity.RegisterActivity" />
         <activity android:name=".view.acitvity.UserActivity" />
-        <activity android:name=".view.userinfo.SetRealnameActivity" />
         <activity android:name=".view.acitvity.ActinfoActivity" />
         <activity android:name=".view.acitvity.NewsinfoActivity" />
         <activity android:name=".view.acitvity.EditNewscommentActivity" />
@@ -40,13 +40,16 @@
         <activity android:name=".view.acitvity.MyActActivity" />
         <activity android:name=".view.acitvity.ActInitinfoActivity" />
         <activity android:name=".view.acitvity.MyPostsActivity" />
+        <activity android:name=".view.userinfo.SetRealnameActivity" />
         <activity android:name=".view.userinfo.SetNicknameActivity" />
         <activity android:name=".view.userinfo.SetSexActivity" />
         <activity android:name=".view.userinfo.SetDeptActivity" />
         <activity android:name=".view.userinfo.SetClassActivity" />
         <activity android:name=".view.userinfo.SetNumActivity" />
         <activity android:name=".view.userinfo.SetPhoneActivity" />
-        <activity android:name=".view.userinfo.SetQQActivity"/>
+        <activity android:name=".view.userinfo.SetQQActivity" />
+        <activity android:name=".view.acitvity.AboutActivity" />
+        <activity android:name=".view.acitvity.ShareActivity"></activity>
     </application>
 
 </manifest>

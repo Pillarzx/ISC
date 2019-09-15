@@ -26,7 +26,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SetRealnameActivity extends AppCompatActivity {
-
     EditText etrealname;
     Handler handler;
     String realname;
@@ -39,7 +38,6 @@ public class SetRealnameActivity extends AppCompatActivity {
     public void back(View v){
         finish();
     }
-
     public void setRealname(View view){
         realname=etrealname.getText().toString();
         try {
@@ -47,7 +45,6 @@ public class SetRealnameActivity extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
         handler=new Handler(){
             @Override
             public void handleMessage(Message msg) {
@@ -62,11 +59,12 @@ public class SetRealnameActivity extends AppCompatActivity {
     }
 
     void sendRealname(String realname){
+        Log.d("isc", "yidanji ");
         OkHttpClient client=new OkHttpClient();
         FormBody formBody=new FormBody.Builder().add("uno",SPUtil.getInt("uno")+"").add("realname",realname).build();
-        Request request=new Request.Builder().url("http://47.103.16.59:8080/ISCServer/SetRealnameServlet").post(formBody).build();
+        Request request=new Request.Builder().url("http://47.103.16.59:8080/ISCServer/SetRealname").post(formBody).build();
         Call call=client.newCall(request);
-
+        Log.d("isc", "zhixingdaozhe  ");
         call.enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -76,8 +74,8 @@ public class SetRealnameActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseStr=response.body().string();
+                Log.d("isc", "SetRealnameServlet==" + responseStr);
                 if(response.isSuccessful()){
-                    Log.d("isc", "SetRealnameServlet==" + responseStr);
                     if(Util.isNumeric(responseStr)&&Integer.parseInt(responseStr)>(-1)){
                         Message message=new Message();
                         message.what= Flag.SETREALNAMEACTIVITY_MSG;
