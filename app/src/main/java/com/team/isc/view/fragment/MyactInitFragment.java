@@ -18,8 +18,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.ActivityBean;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Activity;
 import com.team.isc.util.SPUtil;
 import com.team.isc.view.acitvity.ActInitinfoActivity;
 
@@ -38,7 +38,7 @@ public class MyactInitFragment extends Fragment implements AdapterView.OnItemCli
 
     protected View mifView;
     ListView myact_listview;
-    ArrayList<Activity> activities;
+    ArrayList<ActivityBean> activities;
     TextView myactinit_title,myactinit_datetime,myactinit_place;
     ImageView myactinit_img;
     MyactInitAdapter myactInitAdapter;
@@ -72,7 +72,7 @@ public class MyactInitFragment extends Fragment implements AdapterView.OnItemCli
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==Flag.MYACTINITFRAGMENT_MSG){
-                    activities=(ArrayList<Activity>)msg.obj;
+                    activities=(ArrayList<ActivityBean>)msg.obj;
                     myactInitAdapter=new MyactInitAdapter();
                     myact_listview.setAdapter(myactInitAdapter);
                 }
@@ -98,7 +98,7 @@ public class MyactInitFragment extends Fragment implements AdapterView.OnItemCli
                 String responseStr = response.body().string();
                 if (response.isSuccessful()) {
                     Gson gson = new Gson();
-                    activities = gson.fromJson(responseStr, new TypeToken<ArrayList<Activity>>() {
+                    activities = gson.fromJson(responseStr, new TypeToken<ArrayList<ActivityBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.MYACTINITFRAGMENT_MSG;
@@ -151,7 +151,7 @@ public class MyactInitFragment extends Fragment implements AdapterView.OnItemCli
             myactinit_datetime=viewitem.findViewById(R.id.myactinit_datetime);
             myactinit_place=viewitem.findViewById(R.id.myactinit_place);
 
-            Activity current=activities.get(position);
+            ActivityBean current=activities.get(position);
             myactinit_title.setText(current.getAtitle());
             myactinit_datetime.setText(current.getAdatetime());
             myactinit_place.setText(current.getAplace());

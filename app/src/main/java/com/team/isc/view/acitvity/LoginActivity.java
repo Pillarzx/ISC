@@ -74,8 +74,6 @@ public class LoginActivity extends AppCompatActivity {
                     switch (flag){
                         case Flag.LOGIN_MSGTRUE:
                             Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-                            Intent intent=new Intent(LoginActivity.this,UserActivity.class);
-                            startActivity(intent);
                             finish();
                             break;
                         case Flag.LOGIN_MSGFALSE:

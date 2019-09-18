@@ -78,10 +78,5 @@
     <string name="share">分享</string>
     <string name="title_activity_act_initinfo">ActInitinfoActivity</string>
     <string name="roster">活动报名信息</string>
-    <string name="generaluser">普通用户</string>
-    <string name="abouttext">\t\t\t\tISC校园助手是由在校大学生团队开发设计的一款面向广大在校生的社区交流平台。在这里，你可以掌握最新校园动态，共享校园信息，发布校园线下活动，让校园生活变得更加丰富多彩。\n
-        \t\t\t\t如果你对我们所做的事情感兴趣，可以加入我们的QQ群，和我们交流你的想法，也可以加入我们的团队，一起为校园社区建设做出贡献！</string>
-    <string name="version">V 0.1</string>
-    <string name="qqqun">QQ群号：306301028</string>
-
+    <string name="generaluser">普通用户</string>>
 </resources>

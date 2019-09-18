@@ -16,9 +16,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Posts;
+import com.team.isc.bean.Posts;
 import com.team.isc.util.SPUtil;
-import com.team.isc.view.fragment.BlogFragment;
 
 import java.io.IOException;
 import java.util.ArrayList;

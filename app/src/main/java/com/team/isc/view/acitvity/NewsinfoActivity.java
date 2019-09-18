@@ -6,13 +6,9 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,10 +16,9 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.model.News;
-import com.team.isc.model.Newscomment;
+import com.team.isc.bean.News;
+import com.team.isc.bean.Newscomment;
 import com.team.isc.util.SPUtil;
-import com.team.isc.view.adapter.ListViewForScrollView;
 
 import java.io.IOException;
 import java.util.ArrayList;

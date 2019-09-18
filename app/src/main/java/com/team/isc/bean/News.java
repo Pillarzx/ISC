@@ -1,4 +1,4 @@
-package com.team.isc.model;
+package com.team.isc.bean;
 
 import java.io.Serializable;
 

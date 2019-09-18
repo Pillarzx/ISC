@@ -1,14 +1,13 @@
-package com.team.isc.model;
+package com.team.isc.bean;
 
 
 import java.io.Serializable;
 
 /**
- * 活动实体类（非android Activity类）
  * Created by ZX on 2019/3/24.
  */
 
-public class Activity implements Serializable{
+public class ActivityBean implements Serializable{
     private int ano;
     private int uno;
     private int astate;
@@ -120,7 +119,7 @@ public class Activity implements Serializable{
 
     @Override
     public String toString() {
-        return "Activity{" +
+        return "ActivityBean{" +
                 "ano=" + ano +
                 ", uno=" + uno +
                 ", astate=" + astate +

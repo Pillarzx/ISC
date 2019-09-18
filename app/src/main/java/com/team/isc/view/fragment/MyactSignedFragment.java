@@ -16,8 +16,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.ActivityBean;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Activity;
 import com.team.isc.util.SPUtil;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ public class MyactSignedFragment extends Fragment {
 
     protected View msfView;
     ListView myactsigned_listview;
-    ArrayList<Activity> activities;
+    ArrayList<ActivityBean> activities;
     Handler handler;
     TextView myactsigned_title,myactsigned_text,myactsigned_host,myactsigned_datetime,myactsigned_place,myactsigned_type,myactsigned_maxnumber,myactsigned_cost;
     MyactSignedAdapter myactSignedAdapter;
@@ -69,7 +69,7 @@ public class MyactSignedFragment extends Fragment {
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==Flag.MYACTSIGNEDFRAGMENT_MSG){
-                    activities=(ArrayList<Activity>)msg.obj;
+                    activities=(ArrayList<ActivityBean>)msg.obj;
                     myactSignedAdapter=new MyactSignedAdapter();
                     myactsigned_listview.setAdapter(myactSignedAdapter);
                 }
@@ -95,7 +95,7 @@ public class MyactSignedFragment extends Fragment {
                 if (response.isSuccessful()) {
                     Log.d("isc", "MyactsignedServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
-                    activities = gson.fromJson(responseStr, new TypeToken<ArrayList<Activity>>() {
+                    activities = gson.fromJson(responseStr, new TypeToken<ArrayList<ActivityBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.MYACTSIGNEDFRAGMENT_MSG;
@@ -140,7 +140,7 @@ public class MyactSignedFragment extends Fragment {
             myactsigned_maxnumber=viewitem.findViewById(R.id.myactsigned_maxnumber);
             myactsigned_cost=viewitem.findViewById(R.id.myactsigned_cost);
 
-            Activity current=activities.get(position);
+            ActivityBean current=activities.get(position);
             myactsigned_title.setText(current.getAtitle());
             myactsigned_text.setText(current.getAdatetime());
             myactsigned_host.setText(current.getAhost());

@@ -19,18 +19,14 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Activity;
-import com.team.isc.util.SPUtil;
+import com.team.isc.bean.ActivityBean;
 import com.team.isc.view.acitvity.ActinfoActivity;
-import com.team.isc.view.acitvity.LoginActivity;
-import com.team.isc.view.acitvity.MainActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -41,7 +37,7 @@ public class ActivityFragment extends Fragment implements AdapterView.OnItemClic
     ListView activitylistview;
     ImageView activityimg;
     TextView activitytitle,activityhost,activitydatetime,activityplace;
-    ArrayList<Activity> activities;
+    ArrayList<ActivityBean> activities;
     ActivityAdapter activityAdapter;
     Handler handler;
     public ActivityFragment() {
@@ -81,7 +77,7 @@ public class ActivityFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==Flag.ACTIVITYFRAGMENT_MSG){
-                    activities=(ArrayList<Activity>)msg.obj;
+                    activities=(ArrayList<ActivityBean>)msg.obj;
                     activityAdapter=new ActivityAdapter();
                     activitylistview.setAdapter(activityAdapter);
                 }
@@ -112,7 +108,7 @@ public class ActivityFragment extends Fragment implements AdapterView.OnItemClic
 //                    Log.d("isc", "ActivityServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
 
-                    activities = gson.fromJson(responseStr, new TypeToken<ArrayList<Activity>>() {
+                    activities = gson.fromJson(responseStr, new TypeToken<ArrayList<ActivityBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.ACTIVITYFRAGMENT_MSG;
@@ -168,7 +164,7 @@ public class ActivityFragment extends Fragment implements AdapterView.OnItemClic
             activitydatetime=viewitem.findViewById(R.id.activity_datetime);
             activityplace=viewitem.findViewById(R.id.activity_place);
 
-            Activity current=activities.get(position);
+            ActivityBean current=activities.get(position);
             Log.d("ISC",activities.get(position).toString());
             Log.d("ISC","position="+position);
             activitytitle.setText(current.getAtitle());

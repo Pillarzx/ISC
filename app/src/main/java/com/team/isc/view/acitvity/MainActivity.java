@@ -272,35 +272,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                break;
             //已用onClick代替
             case R.id.myact:
-                if(SPUtil.getInt("uno",-1)!=-1) {
-                    Intent intent_myact=new Intent(MainActivity.this,MyActActivity.class);
-                    startActivity(intent_myact);
-                }else {
-                    Toast.makeText(MainActivity.this, "请先登录!", Toast.LENGTH_LONG).show();
-                }
+                Intent intent_myact=new Intent(MainActivity.this,MyActActivity.class);
+                startActivity(intent_myact);
                 break;
             case R.id.mycomment:
-                if(SPUtil.getInt("uno",-1)!=-1) {
-                    Intent intent_myposts=new Intent(MainActivity.this,MyPostsActivity.class);
-                    startActivity(intent_myposts);
-                }else {
-                    Toast.makeText(MainActivity.this, "请先登录!", Toast.LENGTH_LONG).show();
-                }
+                Intent intent_myposts=new Intent(MainActivity.this,MyPostsActivity.class);
+                startActivity(intent_myposts);
                 break;
             case R.id.myfavorite:
                 Toast.makeText(MainActivity.this,"您不是资讯发布者，暂时无法查看",Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.nav_manage: break;
-
-            case R.id.nav_send:
-                Intent intent_about=new Intent(MainActivity.this,AboutActivity.class);
-                startActivity(intent_about);
-                break;
-            case R.id.nav_share:
-                Intent intent_share=new Intent(MainActivity.this,ShareActivity.class);
-                startActivity(intent_share);
-                break;
+            case R.id.nav_share: break;
+            case R.id.nav_send: break;
             default:break;
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

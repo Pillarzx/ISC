@@ -10,21 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.ActivityBean;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Activity;
-import com.team.isc.model.Newscomment;
 import com.team.isc.util.SPUtil;
 import com.team.isc.util.Util;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -36,7 +31,7 @@ import okhttp3.Response;
 public class ActinfoActivity extends AppCompatActivity {
 
     TextView acttitle,acttext,acthost,actdatetime,acttype,actplace,actmaxnumber,actcurrentnumber,actcost;
-    Activity activity;
+    ActivityBean activityBean;
     Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,15 +55,15 @@ public class ActinfoActivity extends AppCompatActivity {
     void init(){
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        activity=(Activity) bundle.getSerializable("activity");
-        acttitle.setText(activity.getAtitle());
-        acttext.setText(activity.getAtext());
-        acthost.setText(activity.getAhost());
-        actdatetime.setText(activity.getAdatetime());
-        acttype.setText(activity.getAtype());
-        actplace.setText(activity.getAplace());
-        actmaxnumber.setText(activity.getAmaxnumber()+"");
-        actcost.setText(activity.getAcost()+"");
+        activityBean =(ActivityBean) bundle.getSerializable("activityBean");
+        acttitle.setText(activityBean.getAtitle());
+        acttext.setText(activityBean.getAtext());
+        acthost.setText(activityBean.getAhost());
+        actdatetime.setText(activityBean.getAdatetime());
+        acttype.setText(activityBean.getAtype());
+        actplace.setText(activityBean.getAplace());
+        actmaxnumber.setText(activityBean.getAmaxnumber()+"");
+        actcost.setText(activityBean.getAcost()+"");
         actcurrentnumber.setText("1");//当前报名人数
     }
     public void back(View view){
@@ -83,7 +78,7 @@ public class ActinfoActivity extends AppCompatActivity {
             builder.setPositiveButton("确认参加", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    sendUserinfo(activity.getAno());
+                    sendUserinfo(activityBean.getAno());
                     handler=new Handler(){
                         @Override
                         public void handleMessage(Message msg) {

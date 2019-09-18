@@ -1,4 +1,4 @@
-package com.team.isc.model;
+package com.team.isc.bean;
 
 /**
  * Created by ZX on 2019/5/9.

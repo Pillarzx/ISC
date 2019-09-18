@@ -1,8 +1,6 @@
 package com.team.isc.view.acitvity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +14,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.model.User;
+import com.team.isc.bean.User;
 import com.team.isc.util.SPUtil;
 import com.team.isc.view.userinfo.SetClassActivity;
 import com.team.isc.view.userinfo.SetDeptActivity;

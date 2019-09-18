@@ -18,10 +18,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.model.News;
-import com.team.isc.model.Newscomment;
-import com.team.isc.model.Posts;
-import com.team.isc.model.Postscomment;
+import com.team.isc.bean.Posts;
+import com.team.isc.bean.Postscomment;
 import com.team.isc.util.SPUtil;
 import com.team.isc.util.Util;
 

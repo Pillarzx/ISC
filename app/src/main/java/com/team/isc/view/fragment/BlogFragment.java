@@ -19,9 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Activity;
-import com.team.isc.model.Posts;
-import com.team.isc.view.acitvity.NewsinfoActivity;
+import com.team.isc.bean.Posts;
 import com.team.isc.view.acitvity.PostsinfoActivity;
 
 import java.io.IOException;

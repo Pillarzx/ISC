@@ -16,10 +16,9 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.ActivityBean;
 import com.team.isc.common.Flag;
-import com.team.isc.model.Activity;
-import com.team.isc.model.Roster;
-import com.team.isc.util.SPUtil;
+import com.team.isc.bean.Roster;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import okhttp3.Response;
 
 public class ActInitinfoActivity extends AppCompatActivity {
 
-    Activity activity;
+    ActivityBean activityBean;
     ArrayList<Roster> rosters;
     ListView myactinitinfo_listview;
     Handler handler;
@@ -56,7 +55,7 @@ public class ActInitinfoActivity extends AppCompatActivity {
     void init(){
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        activity=(Activity) bundle.getSerializable("activity");
+        activityBean =(ActivityBean) bundle.getSerializable("activityBean");
     }
 
     void initView(){
@@ -80,7 +79,7 @@ public class ActInitinfoActivity extends AppCompatActivity {
     public void getMyactinitinfoList() {
 
         OkHttpClient client = new OkHttpClient();
-        FormBody formBody=new FormBody.Builder().add("ano", activity.getAno()+"").build();
+        FormBody formBody=new FormBody.Builder().add("ano", activityBean.getAno()+"").build();
         Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/RosterlistServlet").post(formBody).build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
