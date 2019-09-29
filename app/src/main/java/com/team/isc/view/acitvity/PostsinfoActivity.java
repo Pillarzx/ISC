@@ -17,9 +17,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.PostsBean;
+import com.team.isc.bean.PostscommentBean;
 import com.team.isc.common.Flag;
-import com.team.isc.bean.Posts;
-import com.team.isc.bean.Postscomment;
 import com.team.isc.util.SPUtil;
 import com.team.isc.util.Util;
 
@@ -44,9 +44,9 @@ public class PostsinfoActivity extends AppCompatActivity {
     ImageView postsinfo_userimg,postsinfo_img;
     TextView postsinfo_user,postsinfo_datetime,postsinfo_text,postsinfo_commentnum;
     LinearLayout postsinfo_linearadd;
-    Posts posts;
+    PostsBean postsBean;
     Handler handler,submithandler;
-    ArrayList<Postscomment> postscommentArrayList;
+    ArrayList<PostscommentBean> postscommentBeanArrayList;
     //ListView item控件
     ImageView postscommentuserimage;
     TextView postscommentnickname,postscommenttext;
@@ -73,12 +73,12 @@ public class PostsinfoActivity extends AppCompatActivity {
     void init(){
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        posts=(Posts) bundle.getSerializable("posts");
-        Log.d("ISC","poststostring==="+posts.toString());
-        postsinfo_user.setText(posts.getUanme());
-        postsinfo_datetime.setText(posts.getPdatetime());
-        postsinfo_text.setText(posts.getPtext());
-        postsinfo_commentnum.setText(posts.getPcommentnum());
+        postsBean =(PostsBean) bundle.getSerializable("postsBean");
+        Log.d("ISC","poststostring==="+ postsBean.toString());
+        postsinfo_user.setText(postsBean.getUanme());
+        postsinfo_datetime.setText(postsBean.getPdatetime());
+        postsinfo_text.setText(postsBean.getPtext());
+        postsinfo_commentnum.setText(postsBean.getPcommentnum());
     }
 
     void downloaddata(){
@@ -87,15 +87,15 @@ public class PostsinfoActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what== Flag.ACTIVITYPOSTINFO_MSG){
-                    postscommentArrayList=(ArrayList<Postscomment>) msg.obj;
+                    postscommentBeanArrayList =(ArrayList<PostscommentBean>) msg.obj;
                     postsinfo_linearadd.removeAllViews();
-                    for(int i=0;i<postscommentArrayList.size();i++){
+                    for(int i = 0; i< postscommentBeanArrayList.size(); i++){
                         View viewitem = getLayoutInflater().inflate(R.layout.activity_postsinfolist_item,null);
                         postscommentuserimage=viewitem.findViewById(R.id.postscommentuserimage);
                         postscommentnickname=viewitem.findViewById(R.id.postscommentnickname);
                         postscommenttext=viewitem.findViewById(R.id.postscommenttext);
 
-                        Postscomment current=postscommentArrayList.get(i);
+                        PostscommentBean current= postscommentBeanArrayList.get(i);
                         postscommentnickname.setText(current.getUname());
                         postscommenttext.setText(current.getPctext());
                         postscommentuserimage.setImageResource(R.drawable.ic_launcher_background);
@@ -108,7 +108,7 @@ public class PostsinfoActivity extends AppCompatActivity {
     }
     public void getPostscommentList(){
         OkHttpClient client = new OkHttpClient();
-        FormBody formBody=new FormBody.Builder().add("pno",posts.getPno()+"").build();
+        FormBody formBody=new FormBody.Builder().add("pno", postsBean.getPno()+"").build();
         Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/PostscommentServlet").post(formBody).build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
@@ -126,13 +126,13 @@ public class PostsinfoActivity extends AppCompatActivity {
                     Log.d("isc", "PostscommentServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
 
-                    postscommentArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<Postscomment>>() {
+                    postscommentBeanArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<PostscommentBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.ACTIVITYPOSTINFO_MSG;
-                    message.obj=postscommentArrayList;
+                    message.obj= postscommentBeanArrayList;
                     handler.sendMessage(message);
-                    Log.d("isc", "(内部)postscommentArrayList ==" + postscommentArrayList.toString());
+                    Log.d("isc", "(内部)postscommentBeanArrayList ==" + postscommentBeanArrayList.toString());
                 }
             }
         });
@@ -153,7 +153,7 @@ public class PostsinfoActivity extends AppCompatActivity {
             JSONObject obj=new JSONObject();
             try {
                 obj.put("uno", SPUtil.getInt("uno"));
-                obj.put("pno",posts.getPno());
+                obj.put("pno", postsBean.getPno());
                 obj.put("pctext", URLEncoder.encode(editpctext,"UTF-8") );
             } catch (JSONException e) {
                 e.printStackTrace();

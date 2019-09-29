@@ -4,7 +4,7 @@ package com.team.isc.bean;
  * Created by ZX on 2019/3/22.
  */
 
-public class User {
+public class UserBean {
     private int uno;
     private int iid;
     private String usign;
@@ -144,7 +144,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserBean{" +
                 "uno=" + uno +
                 ", iid=" + iid +
                 ", usign='" + usign + '\'' +

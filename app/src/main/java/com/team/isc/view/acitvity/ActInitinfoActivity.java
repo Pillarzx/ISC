@@ -18,7 +18,7 @@ import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.bean.ActivityBean;
 import com.team.isc.common.Flag;
-import com.team.isc.bean.Roster;
+import com.team.isc.bean.RosterBean;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ import okhttp3.Response;
 public class ActInitinfoActivity extends AppCompatActivity {
 
     ActivityBean activityBean;
-    ArrayList<Roster> rosters;
+    ArrayList<RosterBean> rosterBeans;
     ListView myactinitinfo_listview;
     Handler handler;
     MyactInitAdapter myactInitAdapter;
@@ -64,7 +64,7 @@ public class ActInitinfoActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==Flag.MYACTINITINFOACTIVITY_MSG){
-                    rosters=(ArrayList<Roster>)msg.obj;
+                    rosterBeans =(ArrayList<RosterBean>)msg.obj;
                     myactInitAdapter=new MyactInitAdapter();
                     myactinitinfo_listview.setAdapter(myactInitAdapter);
                 }
@@ -93,11 +93,11 @@ public class ActInitinfoActivity extends AppCompatActivity {
                 String responseStr = response.body().string();
                 if (response.isSuccessful()) {
                     Gson gson = new Gson();
-                    rosters = gson.fromJson(responseStr, new TypeToken<ArrayList<Roster>>() {
+                    rosterBeans = gson.fromJson(responseStr, new TypeToken<ArrayList<RosterBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.MYACTINITINFOACTIVITY_MSG;
-                    message.obj=rosters;
+                    message.obj= rosterBeans;
                     handler.sendMessage(message);
                 }
             }
@@ -108,7 +108,7 @@ public class ActInitinfoActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return rosters.size();
+            return rosterBeans.size();
         }
 
         @Override
@@ -131,7 +131,7 @@ public class ActInitinfoActivity extends AppCompatActivity {
             myactinitinfo_class=viewitem.findViewById(R.id.myactinitinfo_class);
             myactinitinfo_num=viewitem.findViewById(R.id.myactinitinfo_num);
 
-            Roster current=rosters.get(position);
+            RosterBean current= rosterBeans.get(position);
             myactinitinfo_realname.setText(current.getUrealname());
             if(current.getUsex()=="f") {
                 myactinitinfo_sex.setText("女");

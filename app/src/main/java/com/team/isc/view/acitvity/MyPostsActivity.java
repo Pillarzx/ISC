@@ -15,8 +15,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.PostsBean;
 import com.team.isc.common.Flag;
-import com.team.isc.bean.Posts;
 import com.team.isc.util.SPUtil;
 
 import java.io.IOException;
@@ -32,7 +32,7 @@ import okhttp3.Response;
 public class MyPostsActivity extends AppCompatActivity {
 
     ListView myposts_listview;
-    ArrayList<Posts> postsArrayList;
+    ArrayList<PostsBean> postsBeanArrayList;
     Handler handler;
     ImageView myposts_postsuserimg,myposts_postsimg;
     TextView myposts_postsuser,myposts_poststime,myposts_poststext,myposts_postscommentnum;
@@ -53,7 +53,7 @@ public class MyPostsActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==Flag.MYPOSTSACTIVITY_MSG){
-                    postsArrayList=(ArrayList<Posts>) msg.obj;
+                    postsBeanArrayList =(ArrayList<PostsBean>) msg.obj;
                     MypostsAdapter mypostsAdapter=new MypostsAdapter();
                     myposts_listview.setAdapter(mypostsAdapter);
                 }
@@ -79,11 +79,11 @@ public class MyPostsActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Log.d("isc", "MypostsServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
-                    postsArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<Posts>>() {
+                    postsBeanArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<PostsBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.MYPOSTSACTIVITY_MSG;
-                    message.obj=postsArrayList;
+                    message.obj= postsBeanArrayList;
                     handler.sendMessage(message);
                 }
             }
@@ -97,7 +97,7 @@ public class MyPostsActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return postsArrayList.size();
+            return postsBeanArrayList.size();
         }
 
         @Override
@@ -120,7 +120,7 @@ public class MyPostsActivity extends AppCompatActivity {
             myposts_poststime=viewitem.findViewById(R.id.myposts_poststime);
             myposts_postsuserimg=viewitem.findViewById(R.id.myposts_postsuserimg);
 
-            Posts current=postsArrayList.get(position);
+            PostsBean current= postsBeanArrayList.get(position);
             myposts_postsuser.setText(current.getUanme());
             myposts_poststime.setText(current.getPdatetime());
             myposts_poststext.setText(current.getPtext());

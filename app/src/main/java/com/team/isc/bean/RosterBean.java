@@ -4,7 +4,7 @@ package com.team.isc.bean;
  * Created by ZX on 2019/5/26.
  */
 
-public class Roster {
+public class RosterBean {
     private int uno;
     private int iid;
     private String urealname;

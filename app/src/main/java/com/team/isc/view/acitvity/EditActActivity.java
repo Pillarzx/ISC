@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +18,7 @@ import com.bigkoo.pickerview.listener.OnTimeSelectListener;
 import com.bigkoo.pickerview.view.TimePickerView;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.util.MyRadioGroup;
+import com.team.isc.widget.MyRadioGroup;
 import com.team.isc.util.SPUtil;
 import com.team.isc.util.Util;
 

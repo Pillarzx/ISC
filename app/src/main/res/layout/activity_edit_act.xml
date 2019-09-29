@@ -122,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/type" />
 
-                <com.team.isc.util.MyRadioGroup
+                <com.team.isc.widget.MyRadioGroup
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/editact_radiogroup"
@@ -173,7 +173,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/other" />
                     </LinearLayout>
-                </com.team.isc.util.MyRadioGroup>
+                </com.team.isc.widget.MyRadioGroup>
             </LinearLayout>
 
             <LinearLayout

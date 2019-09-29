@@ -4,7 +4,7 @@ package com.team.isc.bean;
  * Created by ZX on 2019/5/1.
  */
 
-public class Newscomment {
+public class NewscommentBean {
     private int ncno;
     private String uname;
     private int nno;

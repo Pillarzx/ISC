@@ -18,8 +18,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.PostsBean;
 import com.team.isc.common.Flag;
-import com.team.isc.bean.Posts;
 import com.team.isc.view.acitvity.PostsinfoActivity;
 
 import java.io.IOException;
@@ -34,7 +34,7 @@ import okhttp3.Response;
 public class BlogFragment extends Fragment implements AdapterView.OnItemClickListener{
     protected View bfView;
     ListView bloglistview;
-    ArrayList<Posts> postsArrayList;
+    ArrayList<PostsBean> postsBeanArrayList;
     Handler handler;
     BlogAdapter blogAdapter;
     ImageView postsuserimg,postsimg;
@@ -69,7 +69,7 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==Flag.BLOGFRAGMENT_MSG){
-                    postsArrayList=(ArrayList<Posts>) msg.obj;
+                    postsBeanArrayList =(ArrayList<PostsBean>) msg.obj;
                     blogAdapter=new BlogAdapter();
                     bloglistview.setAdapter(blogAdapter);
 
@@ -98,13 +98,13 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
 //                    Log.d("isc", "PostsServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
 
-                    postsArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<Posts>>() {
+                    postsBeanArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<PostsBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.BLOGFRAGMENT_MSG;
-                    message.obj=postsArrayList;
+                    message.obj= postsBeanArrayList;
                     handler.sendMessage(message);
-                    Log.d("isc", "(内部)postsArrayList==" + postsArrayList.toString());
+                    Log.d("isc", "(内部)postsBeanArrayList==" + postsBeanArrayList.toString());
                 }
             }
         });
@@ -114,7 +114,7 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent=new Intent(getActivity(),PostsinfoActivity.class);
         Bundle bundle=new Bundle();
-        bundle.putSerializable("posts",postsArrayList.get(i));
+        bundle.putSerializable("posts", postsBeanArrayList.get(i));
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -129,7 +129,7 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
 
         @Override
         public int getCount() {
-            return postsArrayList.size();
+            return postsBeanArrayList.size();
         }
 
         @Override
@@ -152,7 +152,7 @@ public class BlogFragment extends Fragment implements AdapterView.OnItemClickLis
             postsuserimg=viewitem.findViewById(R.id.postsuserimg);
             postsimg=viewitem.findViewById(R.id.postsimg);
 
-            Posts current=postsArrayList.get(position);
+            PostsBean current= postsBeanArrayList.get(position);
             postsuser.setText(current.getUanme());
             poststime.setText(current.getPdatetime());
             poststext.setText(current.getPtext());

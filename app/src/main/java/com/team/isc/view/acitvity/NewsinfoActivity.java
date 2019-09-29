@@ -15,9 +15,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
+import com.team.isc.bean.NewscommentBean;
 import com.team.isc.common.Flag;
-import com.team.isc.bean.News;
-import com.team.isc.bean.Newscomment;
+import com.team.isc.bean.NewsBean;
 import com.team.isc.util.SPUtil;
 
 import java.io.IOException;
@@ -34,9 +34,9 @@ public class NewsinfoActivity extends AppCompatActivity {
 
     TextView newsinfotitle,newsinfoauth,newsinfodate,newsinfotext;
     //    ListViewForScrollView newsinfolistview;
-    ArrayList<Newscomment> newscommentArrayList;
+    ArrayList<NewscommentBean> newscommentBeanArrayList;
     Handler handler;
-    News news;
+    NewsBean newsBean;
     //    NewscommentAdapter newscommentAdapter;
     ImageView newscommentuserimage;
     TextView newscommentnickname,newscommenttext;
@@ -61,12 +61,12 @@ public class NewsinfoActivity extends AppCompatActivity {
     void init(){
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
-        news=(News) bundle.getSerializable("news");
-        Log.d("ISC","newstostring==="+news.toString());
-        newsinfotitle.setText(news.getNtitle());
-        newsinfoauth.setText(news.getUname());
-        newsinfodate.setText(news.getNdate());
-        newsinfotext.setText(news.getNtext());
+        newsBean =(NewsBean) bundle.getSerializable("newsBean");
+        Log.d("ISC","newstostring==="+ newsBean.toString());
+        newsinfotitle.setText(newsBean.getNtitle());
+        newsinfoauth.setText(newsBean.getUname());
+        newsinfodate.setText(newsBean.getNdate());
+        newsinfotext.setText(newsBean.getNtext());
     }
     void downloaddata(){
         getNewscommentList();
@@ -74,18 +74,18 @@ public class NewsinfoActivity extends AppCompatActivity {
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what== Flag.NEWSINFOACTIVITY_MSG){
-                    newscommentArrayList=(ArrayList<Newscomment>) msg.obj;
+                    newscommentBeanArrayList =(ArrayList<NewscommentBean>) msg.obj;
 //                    newscommentAdapter=new NewscommentAdapter();
 //                    newsinfolistview.setAdapter(newscommentAdapter);
                     linearadd.removeAllViews();
-                    for(int i=0;i<newscommentArrayList.size();i++){
+                    for(int i = 0; i< newscommentBeanArrayList.size(); i++){
 //                        View viewitem = LayoutInflater.from(this).inflate(R.layout.item_linear, null);
                         View viewitem = getLayoutInflater().inflate(R.layout.activity_newsinfolist_item,null);
                         newscommentuserimage=viewitem.findViewById(R.id.newscommentuserimage);
                         newscommentnickname=viewitem.findViewById(R.id.newscommentnickname);
                         newscommenttext=viewitem.findViewById(R.id.newscommenttext);
 
-                        Newscomment current=newscommentArrayList.get(i);
+                        NewscommentBean current= newscommentBeanArrayList.get(i);
                         newscommentnickname.setText(current.getUname());
                         newscommenttext.setText(current.getNctext());
                         newscommentuserimage.setImageResource(R.drawable.ic_launcher_background);
@@ -98,7 +98,7 @@ public class NewsinfoActivity extends AppCompatActivity {
     }
     public void getNewscommentList(){
         OkHttpClient client = new OkHttpClient();
-        FormBody formBody=new FormBody.Builder().add("nno",news.getNno()+"").build();
+        FormBody formBody=new FormBody.Builder().add("nno", newsBean.getNno()+"").build();
         Request request = new Request.Builder().url("http://47.103.16.59:8080/ISCServer/NewscommentServlet").post(formBody).build();
         Call call = client.newCall(request);
         call.enqueue(new Callback() {
@@ -116,13 +116,13 @@ public class NewsinfoActivity extends AppCompatActivity {
                     Log.d("isc", "NewscommentServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
 
-                    newscommentArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<Newscomment>>() {
+                    newscommentBeanArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<NewscommentBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.NEWSINFOACTIVITY_MSG;
-                    message.obj=newscommentArrayList;
+                    message.obj= newscommentBeanArrayList;
                     handler.sendMessage(message);
-                    Log.d("isc", "(内部)newscommentArrayList==" + newscommentArrayList.toString());
+                    Log.d("isc", "(内部)newscommentBeanArrayList==" + newscommentBeanArrayList.toString());
                 }
             }
         });
@@ -142,8 +142,8 @@ public class NewsinfoActivity extends AppCompatActivity {
         if(SPUtil.contains("uno")){
             Intent intent=new Intent(NewsinfoActivity.this,EditNewscommentActivity.class);
             Bundle bundle=new Bundle();
-            Log.d("ISC","发送news.getnno====="+news.getNno());
-            bundle.putInt("nno",news.getNno());
+            Log.d("ISC","发送news.getnno====="+ newsBean.getNno());
+            bundle.putInt("nno", newsBean.getNno());
             intent.putExtras(bundle);
 
             startActivity(intent);

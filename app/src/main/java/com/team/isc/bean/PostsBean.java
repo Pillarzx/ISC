@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by ZX on 2019/4/23.
  */
 
-public class Posts implements Serializable{
+public class PostsBean implements Serializable{
     private int pno;
     private String uname;
     private int iid;
@@ -67,7 +67,7 @@ public class Posts implements Serializable{
 
     @Override
     public String toString() {
-        return "Posts{" +
+        return "PostsBean{" +
                 "pno=" + pno +
                 ", uname='" + uname + '\'' +
                 ", iid=" + iid +

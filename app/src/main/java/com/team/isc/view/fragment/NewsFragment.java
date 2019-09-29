@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.team.isc.R;
 import com.team.isc.common.Flag;
-import com.team.isc.bean.News;
+import com.team.isc.bean.NewsBean;
 import com.team.isc.view.acitvity.NewsinfoActivity;
 
 import java.io.IOException;
@@ -36,7 +36,7 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
 
     protected View nfview;
     ListView newslistview;
-    ArrayList<News> newsArrayList;
+    ArrayList<NewsBean> newsBeanArrayList;
     Handler handler;
     NewsAdapter newsAdapter;
     TextView newstitle,newstext,newsauth,newsdate;
@@ -64,7 +64,7 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
             @Override
             public void handleMessage(Message msg) {
                 if(msg.what==Flag.NEWSFRAGMENT_MSG){
-                    newsArrayList=(ArrayList<News>) msg.obj;
+                    newsBeanArrayList =(ArrayList<NewsBean>) msg.obj;
                     newsAdapter=new NewsAdapter();
                     newslistview.setAdapter(newsAdapter);
                 }
@@ -95,13 +95,13 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
 //                    Log.d("isc", "NewssServletresponseStr==" + responseStr);
                     Gson gson = new Gson();
 
-                    newsArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<News>>() {
+                    newsBeanArrayList = gson.fromJson(responseStr, new TypeToken<ArrayList<NewsBean>>() {
                     }.getType());
                     Message message = new Message();
                     message.what = Flag.NEWSFRAGMENT_MSG;
-                    message.obj=newsArrayList;
+                    message.obj= newsBeanArrayList;
                     handler.sendMessage(message);
-                    Log.d("isc", "(内部)postsArrayList==" + newsArrayList.toString());
+                    Log.d("isc", "(内部)postsBeanArrayList==" + newsBeanArrayList.toString());
                 }
             }
         });
@@ -111,7 +111,7 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent=new Intent(getActivity(),NewsinfoActivity.class);
         Bundle bundle=new Bundle();
-        bundle.putSerializable("news",newsArrayList.get(i));
+        bundle.putSerializable("news", newsBeanArrayList.get(i));
         intent.putExtras(bundle);
         startActivity(intent);
     }
@@ -120,7 +120,7 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
 
         @Override
         public int getCount() {
-            return newsArrayList.size();
+            return newsBeanArrayList.size();
         }
 
         @Override
@@ -142,7 +142,7 @@ public class NewsFragment extends Fragment implements AdapterView.OnItemClickLis
             newsauth=viewitem.findViewById(R.id.news_auth);
             newsimage=viewitem.findViewById(R.id.news_image);
 
-            News current=newsArrayList.get(position);
+            NewsBean current= newsBeanArrayList.get(position);
             newstitle.setText(current.getNtitle());
             newsdate.setText(current.getNdate());
             newsauth.setText(current.getUname());

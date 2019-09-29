@@ -3,7 +3,6 @@ package com.team.isc.view.acitvity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +22,7 @@ import android.widget.Toast;
 
 import com.team.isc.R;
 import com.team.isc.util.SPUtil;
-import com.team.isc.util.UnfoldButton;
+import com.team.isc.widget.UnfoldButton;
 import com.team.isc.view.MyViewPager;
 import com.team.isc.view.adapter.MainFragmentStatePagerAdapter;
 import com.team.isc.view.fragment.ActivityFragment;

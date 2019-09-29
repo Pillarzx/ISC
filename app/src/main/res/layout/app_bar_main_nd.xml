@@ -23,7 +23,7 @@
         <!--android:layout_margin="@dimen/fab_margin"-->
         <!--app:srcCompat="@drawable/plus" />-->
 
-        <com.team.isc.util.UnfoldButton
+        <com.team.isc.widget.UnfoldButton
             android:id="@+id/unfoldButton"
             android:layout_above="@+id/bottomLinearLayout"
             android:layout_margin="@dimen/fab_margin"

@@ -4,7 +4,7 @@ package com.team.isc.bean;
  * Created by ZX on 2019/5/9.
  */
 
-public class Postscomment {
+public class PostscommentBean {
     private int pcno;
     private String uname;
     private int pno;
